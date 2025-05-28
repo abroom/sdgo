@@ -10,37 +10,41 @@
 			height: 100%;
 			width: 100%;
 
+			:focus-visible {
+				box-shadow: 0 0 10px var(--off-white);
+				outline: 2px solid var(--off-white);
+			}
+
 			button {
 				cursor: pointer;
+				border-radius: 5px;
 
 				&:hover {
-					background-color: var(--off-black);
-				}
-
-				&.toggled {
-					background-color: var(--text-color);
-					color: var(--background-color);
-
-					&:hover {
-						background-color: var(--off-white);
-					}
+					box-shadow: 0 0 10px var(--off-white);
+					outline: 2px solid var(--off-white);
 				}
 			}
 
 			input,
 			textarea {
 				width: 100%;
+				border-radius: 5px;
 				padding: 0.5em 1em;
-				background-color: var(--text-color);
-				color: var(--background-color);
+				background-color: var(--grey);
+				color: var(--text-color);
 			}
 		}
 
-		--background-color: black;
-		--text-color: white;
+		--background-color: var(--black);
+		--text-color: var(--white);
 
+		--black: #000000;
 		--off-black: #242424;
+
+		--white: #eeeeee;
 		--off-white: #e0e0e0;
+
+		--grey: #303030;
 	}
 }
 
