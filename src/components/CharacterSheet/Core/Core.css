@@ -1,0 +1,33 @@
+@layer components {
+	.values {
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+
+		> div {
+			display: flex;
+
+			p {
+				padding: 0.5em 1em;
+			}
+
+			> :first-child {
+				width: 33%;
+				min-width: fit-content;
+				font-weight: bold;
+				text-align: center;
+				border: 1px solid white;
+				border-right: dotted;
+				border-left: none;
+				border-top-right-radius: 10px;
+			}
+
+			> :last-child {
+				width: 67%;
+				min-width: 50%;
+				border-bottom: 1px solid white;
+				text-align: left;
+			}
+		}
+	}
+}

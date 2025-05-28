@@ -1,0 +1,36 @@
+@layer components {
+	.character-sheet-page {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		height: 100%;
+		width: 100%;
+		overflow: auto;
+		padding: 20px;
+		background-color: var(--background-color);
+		color: var(--text-color);
+
+		section {
+			width: 100%;
+
+			> button {
+				border-top: solid;
+				border-radius: 8px;
+				padding: 0.5em 1em;
+			}
+
+			.values {
+				margin-top: 1em;
+			}
+
+			h1 {
+				font-size: 2em;
+			}
+
+			h2 {
+				font-size: 1.5em;
+				margin-bottom: 10px;
+			}
+		}
+	}
+}
