@@ -39,11 +39,13 @@
 
 		--black: #000000;
 		--black-2: #191919;
+		--black-3: #111111;
 		--off-black: #242424;
 
 		--white: #eeeeee;
 		--off-white: #e0e0e0;
 
 		--grey: #303030;
+		--gray: var(--grey);
 	}
 }

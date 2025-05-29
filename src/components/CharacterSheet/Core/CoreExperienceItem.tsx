@@ -36,6 +36,7 @@ export const CoreExperienceItem = ({
 			<div className="flex gap-2">
 				{current.isEditing ? (
 					<input
+						className="max-w-1/2"
 						type="text"
 						value={current.value}
 						onChange={current.handleChange}
@@ -54,6 +55,7 @@ export const CoreExperienceItem = ({
 				<p className="px-0">/</p>
 				{required.isEditing ? (
 					<input
+						className="max-w-1/2"
 						type="text"
 						value={required.value}
 						onChange={required.handleChange}

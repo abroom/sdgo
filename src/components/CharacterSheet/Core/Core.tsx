@@ -1,9 +1,9 @@
-import { ArrowDownOnSquareIcon, CogIcon } from '@heroicons/react/24/solid';
 import classNames from 'classnames';
 import { useEffect, useRef, useState } from 'react';
 
+import { SectionUtils } from '../SectionUtils';
 import type { CharacterSheet, CharacterSheetSectionProps } from '../types';
-import { NotesItem } from '../NotesItem';
+
 import { CoreStandardItem } from './CoreStandardItem';
 import { CoreExperienceItem } from './CoreExperienceItem';
 
@@ -78,25 +78,30 @@ export const Core = ({
 			)}
 			{isContentVisible && (
 				<>
-					<div className="flex justify-end mx-[1em]">
-						<button
-							className="w-[2em] p-[0.25em] rounded-sm"
-							onClick={() => {
-								setEditors((prev) => {
-									return prev.size
-										? new Set()
-										: new Set(
-												Object.keys(characterSheet.core)
-													.filter((key) => key !== 'xp')
-													.concat('xp.current', 'xp.required'),
-											);
-								});
-								nameRef.current?.focus();
-							}}
-						>
-							{editors.size ? <ArrowDownOnSquareIcon /> : <CogIcon />}
-						</button>
-					</div>
+					<SectionUtils
+						notes={characterSheet.core.notes}
+						handleNotesChange={({ target: { value } }) =>
+							setCharacterSheet((prev) => ({
+								...prev,
+								core: {
+									...prev.core,
+									notes: value,
+								},
+							}))
+						}
+						isEditing={editors.size > 0}
+						handleSettingsClick={() => {
+							setEditors((prev) => {
+								return prev.size
+									? new Set()
+									: new Set(
+											Object.keys(characterSheet.core)
+												.filter((key) => key !== 'xp')
+												.concat('xp.current', 'xp.required'),
+										);
+							});
+						}}
+					/>
 					<div className="values">
 						{Object.entries(standardCoreLabelsByKey).map(([key, label]) => (
 							<CoreStandardItem
@@ -178,31 +183,6 @@ export const Core = ({
 										return new Set(prev);
 									}),
 							}}
-						/>
-						<NotesItem
-							isEditing={editors.has('notes')}
-							note={characterSheet.core.notes}
-							handleChange={({ target: { value } }) =>
-								setCharacterSheet((prev) => ({
-									...prev,
-									core: {
-										...prev.core,
-										notes: value,
-									},
-								}))
-							}
-							startEditing={() =>
-								setEditors((prev) => {
-									prev.add('notes');
-									return new Set(prev);
-								})
-							}
-							stopEditing={() =>
-								setEditors((prev) => {
-									prev.delete('notes');
-									return new Set(prev);
-								})
-							}
 						/>
 					</div>
 				</>
