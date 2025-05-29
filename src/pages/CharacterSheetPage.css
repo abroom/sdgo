@@ -2,16 +2,19 @@
 	.character-sheet-page {
 		display: flex;
 		flex-direction: column;
+		gap: 1.5em;
 		align-items: center;
 		height: 100%;
 		width: 100%;
 		overflow: auto;
 		padding: 20px;
-		background-color: var(--background-color);
+		background-color: var(--black-2);
 		color: var(--text-color);
 
 		section {
 			width: 100%;
+			background-color: var(--background-color);
+			border-radius: 8px;
 
 			> button {
 				border: solid;
@@ -26,7 +29,10 @@
 			}
 
 			.values {
-				margin-top: 1em;
+				display: flex;
+				flex-direction: column;
+				gap: 1em;
+				margin: 1em;
 			}
 
 			h1 {

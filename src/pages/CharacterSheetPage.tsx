@@ -2,6 +2,7 @@ import { useState } from 'react';
 import {
 	Core,
 	DEFAULT_CHARACTER_SHEET,
+	Stats,
 	type CharacterSheet,
 } from '../components/CharacterSheet';
 import './CharacterSheetPage.css';
@@ -16,6 +17,7 @@ export const CharacterSheetPage = () => {
 	return (
 		<div className="character-sheet-page">
 			<Core {...sectionProps} />
+			<Stats {...sectionProps} />
 		</div>
 	);
 };

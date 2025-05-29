@@ -1,9 +1,5 @@
 @layer components {
-	.values {
-		display: flex;
-		flex-direction: column;
-		gap: 1em;
-
+	.core .values {
 		> div {
 			display: flex;
 

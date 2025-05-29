@@ -17,9 +17,9 @@ export const DEFAULT_CHARACTER_SHEET: CharacterSheet = {
 	},
 	stats: {
 		data: [
-			{ name: 'Strength', score: '', mod: '' },
-			{ name: 'Dexterity', score: '', mod: '' },
-			{ name: 'Constitution', score: '', mod: '' },
+			{ name: 'Strength', score: '1231', mod: '12313' },
+			{ name: 'Dexterity', score: '12', mod: '+1' },
+			{ name: 'Constitution', score: '', mod: '-5' },
 			{ name: 'Intelligence', score: '', mod: '' },
 			{ name: 'Wisdom', score: '', mod: '' },
 			{ name: 'Charisma', score: '', mod: '' },

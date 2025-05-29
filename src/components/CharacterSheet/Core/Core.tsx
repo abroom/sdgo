@@ -1,11 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
 import { ArrowDownOnSquareIcon, CogIcon } from '@heroicons/react/24/solid';
-import type { CharacterSheet, CharacterSheetSectionProps } from '../types';
-import './Core.css';
 import classNames from 'classnames';
+import { useEffect, useRef, useState } from 'react';
+
+import type { CharacterSheet, CharacterSheetSectionProps } from '../types';
+import { NotesItem } from '../NotesItem';
 import { CoreStandardItem } from './CoreStandardItem';
 import { CoreExperienceItem } from './CoreExperienceItem';
-import { NotesItem } from '../NotesItem';
+
+import './Core.css';
 
 type CoreStandardItemKey = keyof Omit<
 	CharacterSheet['core'],
@@ -43,7 +45,7 @@ export const Core = ({
 		<section className="core">
 			{editors.has('name') ? (
 				<input
-					className="h-[3em] my-[0.55em]"
+					className="h-[3em] my-[0.55em] mx-[1em] w-[calc(100%-2em)]"
 					ref={nameRef}
 					type="text"
 					placeholder="Unnamed Crawler"
@@ -76,7 +78,7 @@ export const Core = ({
 			)}
 			{isContentVisible && (
 				<>
-					<div className="flex justify-end">
+					<div className="flex justify-end mx-[1em]">
 						<button
 							className="w-[2em] p-[0.25em] rounded-sm"
 							onClick={() => {
