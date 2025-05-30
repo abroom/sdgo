@@ -33,10 +33,10 @@ export const CoreExperienceItem = ({
 	return (
 		<div>
 			<p>Experience</p>
-			<div className="flex gap-2">
+			<div className="flex gap-[0.5rem]">
 				{current.isEditing ? (
 					<input
-						className="max-w-1/2"
+						className="max-w-[calc((100%-1.5rem)/2)]"
 						type="text"
 						value={current.value}
 						onChange={current.handleChange}
@@ -52,10 +52,10 @@ export const CoreExperienceItem = ({
 						<p>{current.value}</p>
 					</button>
 				)}
-				<p className="px-0">/</p>
+				<p className="px-0 w-[0.5rem] text-center">/</p>
 				{required.isEditing ? (
 					<input
-						className="max-w-1/2"
+						className="max-w-[calc((100%-1.5rem)/2)]"
 						type="text"
 						value={required.value}
 						onChange={required.handleChange}

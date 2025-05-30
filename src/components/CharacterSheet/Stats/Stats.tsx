@@ -120,34 +120,62 @@ export const Stats = ({
 										<p className="text-sm">{stat.name}</p>
 									</span>
 									{editors.has(stat.name) ? (
-										<input
-											className="text-xl text-center"
-											type="text"
-											value={stat.score}
-											placeholder="Score"
-											autoFocus
-											onChange={({ target: { value } }) =>
-												setCharacterSheet((prev) => ({
-													...prev,
-													stats: {
-														...prev.stats,
-														data: prev.stats.data.map((s, i) =>
-															i === index ? { ...s, score: value } : s,
-														),
-													},
-												}))
-											}
-											onKeyDown={(e) => {
-												if (['Enter', 'Escape'].includes(e.key)) {
-													setEditors((prev) => {
-														prev.delete(stat.name);
-														return new Set(prev);
-													});
+										<>
+											<input
+												className="text-xl text-center"
+												type="text"
+												value={stat.score}
+												placeholder="Score"
+												autoFocus
+												onChange={({ target: { value } }) =>
+													setCharacterSheet((prev) => ({
+														...prev,
+														stats: {
+															...prev.stats,
+															data: prev.stats.data.map((s, i) =>
+																i === index ? { ...s, score: value } : s,
+															),
+														},
+													}))
 												}
-											}}
-										/>
+												onKeyDown={(e) => {
+													if (['Enter', 'Escape'].includes(e.key)) {
+														setEditors((prev) => {
+															prev.delete(stat.name);
+															return new Set(prev);
+														});
+													}
+												}}
+											/>
+											<input
+												className="text-xl text-center"
+												type="text"
+												value={stat.mod}
+												placeholder="Mod"
+												onChange={({ target: { value } }) =>
+													setCharacterSheet((prev) => ({
+														...prev,
+														stats: {
+															...prev.stats,
+															data: prev.stats.data.map((s, i) =>
+																i === index ? { ...s, mod: value } : s,
+															),
+														},
+													}))
+												}
+												onKeyDown={(e) => {
+													if (['Enter', 'Escape'].includes(e.key)) {
+														setEditors((prev) => {
+															prev.delete(stat.name);
+															return new Set(prev);
+														});
+													}
+												}}
+											/>
+										</>
 									) : (
 										<button
+											className="col-span-2 grid grid-cols-2"
 											onClick={() => {
 												setEditors((prev) => {
 													prev.add(stat.name);
@@ -155,45 +183,12 @@ export const Stats = ({
 												});
 											}}
 										>
-											<span className="text-4xl">{stat.score}</span>
-										</button>
-									)}
-									{editors.has(stat.name) ? (
-										<input
-											className="text-xl text-center"
-											type="text"
-											value={stat.mod}
-											placeholder="Mod"
-											onChange={({ target: { value } }) =>
-												setCharacterSheet((prev) => ({
-													...prev,
-													stats: {
-														...prev.stats,
-														data: prev.stats.data.map((s, i) =>
-															i === index ? { ...s, mod: value } : s,
-														),
-													},
-												}))
-											}
-											onKeyDown={(e) => {
-												if (['Enter', 'Escape'].includes(e.key)) {
-													setEditors((prev) => {
-														prev.delete(stat.name);
-														return new Set(prev);
-													});
-												}
-											}}
-										/>
-									) : (
-										<button
-											onClick={() => {
-												setEditors((prev) => {
-													prev.add(stat.name);
-													return new Set(prev);
-												});
-											}}
-										>
-											<span className="text-4xl">{stat.mod}</span>
+											<div className="flex items-center justify-center">
+												<span className="text-4xl">{stat.score}</span>
+											</div>
+											<div className="flex items-center justify-center">
+												<span className="text-4xl">{stat.mod}</span>
+											</div>
 										</button>
 									)}
 								</div>

@@ -25,6 +25,7 @@ export const CoreStandardItem = ({
 			{isEditing ? (
 				<div>
 					<input
+						className="h-[46px]"
 						type="text"
 						value={value}
 						onChange={handleChange}
@@ -38,7 +39,7 @@ export const CoreStandardItem = ({
 				</div>
 			) : (
 				<div>
-					<button className="w-full text-left" onClick={startEditing}>
+					<button className="h-full w-full text-left" onClick={startEditing}>
 						<p>{value}</p>
 					</button>
 				</div>

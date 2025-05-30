@@ -4,8 +4,6 @@ import { useState } from 'react';
 import { SectionUtils } from '../SectionUtils';
 import type { CharacterSheetSectionProps } from '../types';
 
-import './Defenses.css';
-
 export const Defenses = ({
 	characterSheet: {
 		defenses: { ac, hp, notes },
@@ -46,7 +44,7 @@ export const Defenses = ({
 						}}
 					/>
 					<div className="values md:flex-row">
-						<div className="border rounded-[8px] flex-grow md:max-w-1/2 flex">
+						<div className="h-[4.5rem] border rounded-[8px] flex-grow md:max-w-1/2 flex">
 							<div className="border-r border-dotted min-w-[7rem] p-[0.5rem]">
 								<p className="text-2xl text-center">AC</p>
 								<p className="text-sm text-center">Armor Class</p>
@@ -91,7 +89,7 @@ export const Defenses = ({
 								)}
 							</div>
 						</div>
-						<div className="border rounded-[8px] flex-grow md:max-w-1/2 flex">
+						<div className="h-[4.5rem] border rounded-[8px] flex-grow md:max-w-1/2 flex">
 							<div className="border-r border-dotted min-w-[7rem] p-[0.5rem]">
 								<p className="text-2xl text-center">HP</p>
 								<p className="text-sm text-center">Hit Points</p>

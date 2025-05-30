@@ -8,6 +8,10 @@
 			}
 
 			> :first-child {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
 				width: 33%;
 				min-width: fit-content;
 				font-weight: bold;
@@ -21,6 +25,7 @@
 			> :last-child {
 				width: 67%;
 				min-width: 50%;
+				padding: 0.5rem;
 				border-bottom: 1px solid var(--white);
 			}
 		}
