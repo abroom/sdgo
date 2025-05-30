@@ -28,7 +28,7 @@ const standardCoreLabelsByKey: {
 };
 
 export const Core = ({
-	characterSheet,
+	characterSheet: { core },
 	setCharacterSheet,
 }: CharacterSheetSectionProps) => {
 	const [isContentVisible, setIsContentVisible] = useState(true);
@@ -45,11 +45,11 @@ export const Core = ({
 		<section className="core">
 			{editors.has('name') ? (
 				<input
-					className="h-[3em] my-[0.55em] mx-[1em] w-[calc(100%-2em)]"
+					className="h-[3rem] my-[0.55rem] mx-[1rem] w-[calc(100%-2rem)]"
 					ref={nameRef}
 					type="text"
 					placeholder="Unnamed Crawler"
-					value={characterSheet.core.name}
+					value={core.name}
 					onChange={({ target: { value } }) =>
 						setCharacterSheet((prev) => ({
 							...prev,
@@ -73,13 +73,13 @@ export const Core = ({
 					className={classNames('w-full', { toggled: !isContentVisible })}
 					onClick={() => setIsContentVisible((prev) => !prev)}
 				>
-					<h1>{characterSheet.core.name || 'Unnamed Crawler'}</h1>
+					<h1>{core.name || 'Unnamed Crawler'}</h1>
 				</button>
 			)}
 			{isContentVisible && (
 				<>
 					<SectionUtils
-						notes={characterSheet.core.notes}
+						notes={core.notes}
 						handleNotesChange={({ target: { value } }) =>
 							setCharacterSheet((prev) => ({
 								...prev,
@@ -95,7 +95,7 @@ export const Core = ({
 								return prev.size
 									? new Set()
 									: new Set(
-											Object.keys(characterSheet.core)
+											Object.keys(core)
 												.filter((key) => key !== 'xp')
 												.concat('xp.current', 'xp.required'),
 										);
@@ -108,13 +108,13 @@ export const Core = ({
 								key={key}
 								isEditing={editors.has(key)}
 								label={label}
-								value={characterSheet.core[key as CoreStandardItemKey]}
+								value={core[key as CoreStandardItemKey]}
 								handleChange={({ target: { value } }) =>
 									setCharacterSheet((prev) => ({
 										...prev,
 										core: {
 											...prev.core,
-											[key as keyof typeof characterSheet.core]: value,
+											[key as keyof typeof core]: value,
 										},
 									}))
 								}
@@ -135,7 +135,7 @@ export const Core = ({
 						<CoreExperienceItem
 							current={{
 								isEditing: editors.has('xp.current'),
-								value: characterSheet.core.xp.current,
+								value: core.xp.current,
 								handleChange: ({ target: { value } }) =>
 									setCharacterSheet((prev) => ({
 										...prev,
@@ -160,7 +160,7 @@ export const Core = ({
 							}}
 							required={{
 								isEditing: editors.has('xp.required'),
-								value: characterSheet.core.xp.required,
+								value: core.xp.required,
 								handleChange: ({ target: { value } }) =>
 									setCharacterSheet((prev) => ({
 										...prev,

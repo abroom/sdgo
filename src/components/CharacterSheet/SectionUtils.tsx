@@ -20,16 +20,16 @@ export const SectionUtils = ({
 	const [editNotes, setEditNotes] = useState(false);
 
 	return (
-		<div className="px-[1em]">
-			<div className="flex justify-end gap-2">
+		<div className="px-[1rem]">
+			<div className="flex justify-end gap-2 p-1 pt-[0.5rem]">
 				<button
-					className="w-[2em] p-[0.25em] rounded-sm"
+					className="w-[2rem] p-[0.25rem] rounded-sm"
 					onClick={() => setShowNotes((prev) => !prev)}
 				>
 					<NewspaperIcon />
 				</button>
 				<button
-					className="w-[2em] p-[0.25em] rounded-sm"
+					className="w-[2rem] p-[0.25rem] rounded-sm"
 					onClick={() => {
 						if (editNotes) setEditNotes(false);
 						if (isEditing || !editNotes) handleSettingsClick();
@@ -42,10 +42,9 @@ export const SectionUtils = ({
 				<div>
 					<p className="text-sm font-semibold">Notes</p>
 					{editNotes ? (
-						<div>
+						<div className="p-1">
 							<textarea
 								value={notes}
-								placeholder="Notes"
 								onChange={handleNotesChange}
 								onKeyDown={(e) => {
 									if (['Escape'].includes(e.key)) {
@@ -67,9 +66,9 @@ export const SectionUtils = ({
 							/>
 						</div>
 					) : (
-						<div>
+						<div className="p-1">
 							<button
-								className="w-full min-h-[4em] p-[1em] text-left bg-(--black-3)"
+								className="w-full min-h-[4rem] p-[1rem] text-left bg-(--black-3)"
 								onClick={() => setEditNotes(true)}
 							>
 								<p className="whitespace-pre-wrap">

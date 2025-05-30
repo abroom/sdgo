@@ -56,7 +56,7 @@ export const Stats = ({
 									<div key={index} className="stat">
 										<span className="col-span-full flex flex-row gap-4">
 											<input
-												className="text-xl h-[2.6em]"
+												className="text-xl h-[2.6rem]"
 												type="text"
 												value={stat.name}
 												placeholder="Stat Name"

@@ -3,7 +3,7 @@
 		.stat-header,
 		.stat {
 			display: grid;
-			gap: 1em;
+			gap: 1rem;
 			grid-template-columns: 1fr 1fr 1fr;
 			text-align: center;
 		}
@@ -11,7 +11,7 @@
 		.stat {
 			border: 1px solid var(--white);
 			border-radius: 8px;
-			padding: 0.5em 1em;
+			padding: 0.5rem 1rem;
 
 			> span {
 				display: flex;

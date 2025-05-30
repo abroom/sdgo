@@ -48,7 +48,7 @@ export const CoreExperienceItem = ({
 						autoFocus
 					/>
 				) : (
-					<button className="min-w-[5em]" onClick={current.startEditing}>
+					<button className="min-w-[5rem]" onClick={current.startEditing}>
 						<p>{current.value}</p>
 					</button>
 				)}
@@ -67,7 +67,7 @@ export const CoreExperienceItem = ({
 						autoFocus
 					/>
 				) : (
-					<button className="min-w-[5em]" onClick={required.startEditing}>
+					<button className="min-w-[5rem]" onClick={required.startEditing}>
 						<p>{required.value}</p>
 					</button>
 				)}
