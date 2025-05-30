@@ -8,6 +8,10 @@
 			text-align: center;
 		}
 
+		.stat-header {
+			padding: 0 1rem;
+		}
+
 		.stat {
 			border: 1px solid var(--off-white);
 			border-radius: 8px;

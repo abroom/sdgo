@@ -22,7 +22,7 @@ export const SectionUtils = ({
 	return (
 		<div className="px-[1rem]">
 			<hr />
-			<div className="flex justify-end gap-2 p-1 pt-[0.5rem]">
+			<div className="flex justify-end gap-2 p-2 pt-[0.5rem]">
 				<button
 					className="w-[2rem] p-[0.25rem] rounded-sm"
 					onClick={() => setShowNotes((prev) => !prev)}
@@ -43,7 +43,7 @@ export const SectionUtils = ({
 				<div>
 					<p className="text-sm font-semibold">Notes</p>
 					{editNotes ? (
-						<div className="p-1">
+						<div className="p-2">
 							<textarea
 								value={notes}
 								onChange={handleNotesChange}
@@ -67,7 +67,7 @@ export const SectionUtils = ({
 							/>
 						</div>
 					) : (
-						<div className="p-1">
+						<div className="p-2">
 							<button
 								className="w-full min-h-[4rem] p-[1rem] text-left bg-(--black-3)"
 								onClick={() => setEditNotes(true)}

@@ -47,7 +47,7 @@ export const Defenses = ({
 						<div className="h-[4.5rem] border rounded-[8px] flex-grow md:max-w-1/2 flex">
 							<div className="border-r border-dotted min-w-[7rem] p-[0.5rem]">
 								<p className="text-2xl text-center">AC</p>
-								<p className="text-sm text-center">Armor Class</p>
+								<p className="text-sm text-center text-(--grey)">Armor Class</p>
 							</div>
 							<div className="flex-grow p-[0.5rem]">
 								{editors.has('ac') ? (
@@ -92,7 +92,7 @@ export const Defenses = ({
 						<div className="h-[4.5rem] border rounded-[8px] flex-grow md:max-w-1/2 flex">
 							<div className="border-r border-dotted min-w-[7rem] p-[0.5rem]">
 								<p className="text-2xl text-center">HP</p>
-								<p className="text-sm text-center">Hit Points</p>
+								<p className="text-sm text-center text-(--grey)">Hit Points</p>
 							</div>
 							<div className="flex-grow flex justify-around items-center gap-[0.25rem]">
 								<div className="flex flex-grow h-full max-w-[calc((100%-1.5rem)/2)] p-[0.5rem]">

@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import {
+	type CharacterSheet,
 	Core,
 	DEFAULT_CHARACTER_SHEET,
+	Defenses,
 	Stats,
-	type CharacterSheet,
+	Weapons,
 } from '../components/CharacterSheet';
 import './CharacterSheetPage.css';
-import { Defenses } from '../components/CharacterSheet/Defenses/Defenses';
 
 export const CharacterSheetPage = () => {
 	const [characterSheet, setCharacterSheet] = useState<CharacterSheet>(
@@ -22,6 +23,11 @@ export const CharacterSheetPage = () => {
 			<Core {...sectionProps} />
 			<Stats {...sectionProps} />
 			<Defenses {...sectionProps} />
+			<Weapons {...sectionProps} />
+			{/* Add other sections like Spells, Talents, Gear as needed */}
+			{/* <Spells {...sectionProps} /> */}
+			{/* <Talents {...sectionProps} /> */}
+			{/* <Gear {...sectionProps} /> */}
 		</div>
 	);
 };

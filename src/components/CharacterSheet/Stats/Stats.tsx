@@ -92,7 +92,7 @@ export const Stats = ({
 									</div>
 								))}
 								<button
-									className="flex gap-2 size-fit p-2 border"
+									className="flex gap-2 size-fit p-2 border self-center"
 									onClick={() =>
 										setCharacterSheet((prev) => ({
 											...prev,
@@ -117,7 +117,7 @@ export const Stats = ({
 										<p className="text-2xl uppercase">
 											{stat.name.substring(0, 3)}
 										</p>
-										<p className="text-sm">{stat.name}</p>
+										<p className="text-sm text-(--grey)">{stat.name}</p>
 									</span>
 									{editors.has(stat.name) ? (
 										<>
