@@ -5,8 +5,6 @@ import { useState } from 'react';
 import { SectionUtils } from '../SectionUtils';
 import type { CharacterSheetSectionProps } from '../types';
 
-import './Stats.css';
-
 export const Stats = ({
 	characterSheet: {
 		stats: { data, notes },
@@ -44,8 +42,8 @@ export const Stats = ({
 							});
 						}}
 					/>
-					<div className="values">
-						<div className="stat-header">
+					<div className="values grid gap-4">
+						<div className="stat-header grid grid-cols-3 text-center px-4 gap-2">
 							<span>Name</span>
 							<span>Score</span>
 							<span>Mod</span>
@@ -53,10 +51,13 @@ export const Stats = ({
 						{editors.has('stats') ? (
 							<>
 								{data.map((stat, index) => (
-									<div key={index} className="stat">
-										<span className="col-span-full flex flex-row gap-4">
+									<div
+										key={index}
+										className="stat border border-(--off-white) rounded-lg h-[4.5rem] p-2 grid grid-cols-3 text-center"
+									>
+										<span className="col-span-full flex flex-row gap-2 items-center justify-center p-2">
 											<input
-												className="text-xl h-[2.6rem]"
+												className="text-xl h-[2.6rem] border rounded px-2"
 												type="text"
 												value={stat.name}
 												placeholder="Stat Name"
@@ -92,7 +93,7 @@ export const Stats = ({
 									</div>
 								))}
 								<button
-									className="flex gap-2 size-fit p-2 border self-center"
+									className="flex gap-2 size-fit p-2 border rounded self-center"
 									onClick={() =>
 										setCharacterSheet((prev) => ({
 											...prev,
@@ -112,8 +113,11 @@ export const Stats = ({
 							</>
 						) : (
 							data.map((stat, index) => (
-								<div key={index} className="stat">
-									<span>
+								<div
+									key={index}
+									className="stat border border-(--off-white) rounded-lg h-[4.5rem] p-2 grid grid-cols-3 text-center gap-2"
+								>
+									<span className="flex flex-col items-center justify-center">
 										<p className="text-2xl uppercase">
 											{stat.name.substring(0, 3)}
 										</p>
@@ -122,7 +126,7 @@ export const Stats = ({
 									{editors.has(stat.name) ? (
 										<>
 											<input
-												className="text-xl text-center"
+												className="text-xl text-center border rounded px-2"
 												type="text"
 												value={stat.score}
 												placeholder="Score"
@@ -148,7 +152,7 @@ export const Stats = ({
 												}}
 											/>
 											<input
-												className="text-xl text-center"
+												className="text-xl text-center border rounded px-2"
 												type="text"
 												value={stat.mod}
 												placeholder="Mod"

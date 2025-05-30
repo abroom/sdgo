@@ -192,14 +192,9 @@ export const Weapons = ({
 														handleFieldChange(index, 'notes', value)
 													}
 													onKeyDown={(e) => {
-														if (['Escape'].includes(e.key)) {
-															setEditors((prev) => {
-																prev.delete(`weapon.${index}`);
-																return new Set(prev);
-															});
-														} else if (
-															['Enter'].includes(e.key) &&
-															e.shiftKey
+														if (
+															['Escape'].includes(e.key) ||
+															(['Enter'].includes(e.key) && e.shiftKey)
 														) {
 															setEditors((prev) => {
 																prev.delete(`weapon.${index}`);

@@ -48,9 +48,10 @@ export const SectionUtils = ({
 								value={notes}
 								onChange={handleNotesChange}
 								onKeyDown={(e) => {
-									if (['Escape'].includes(e.key)) {
-										setEditNotes(false);
-									} else if (['Enter'].includes(e.key) && e.shiftKey) {
+									if (
+										['Escape'].includes(e.key) ||
+										(['Enter'].includes(e.key) && e.shiftKey)
+									) {
 										setEditNotes(false);
 									} else {
 										const { style, scrollHeight } =
