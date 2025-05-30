@@ -21,6 +21,7 @@ export const SectionUtils = ({
 
 	return (
 		<div className="px-[1rem]">
+			<hr />
 			<div className="flex justify-end gap-2 p-1 pt-[0.5rem]">
 				<button
 					className="w-[2rem] p-[0.25rem] rounded-sm"

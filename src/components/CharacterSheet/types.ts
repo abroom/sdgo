@@ -24,7 +24,7 @@ export interface CharacterSheet {
 		hp: { current: string; max: string };
 		notes: string;
 	};
-	attacks: {
+	weapons: {
 		data: {
 			name: string;
 			type: string;
