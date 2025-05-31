@@ -36,14 +36,19 @@ export interface CharacterSheet {
 		notes: string;
 	};
 	spells: {
-		mod: string;
 		data: {
-			level: string;
+			tier: string;
 			spells: {
 				name: string;
 				forgotten: boolean;
+				range: string;
+				duration: string;
+				mod: string;
+				dc: string;
+				effect: string;
 				notes: string;
 			}[];
+			notes: string;
 		}[];
 		notes: string;
 	};

@@ -39,7 +39,7 @@ export const CoreStandardItem = ({
 				</div>
 			) : (
 				<div>
-					<button className="h-full w-full text-left" onClick={startEditing}>
+					<button className="w-full text-left" onClick={startEditing}>
 						<p>{value}</p>
 					</button>
 				</div>

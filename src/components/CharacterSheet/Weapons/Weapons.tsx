@@ -10,7 +10,9 @@ export const Weapons = ({
 	characterSheet: { weapons },
 	setCharacterSheet,
 }: CharacterSheetSectionProps) => {
-	const [isContentVisible, setIsContentVisible] = useState(true);
+	const [isContentVisible, setIsContentVisible] = useState(
+		weapons.data.length > 0 || weapons.notes.length > 0,
+	);
 	const [editors, setEditors] = useState<Set<string>>(new Set());
 
 	const fields: (keyof CharacterSheet['weapons']['data'][number])[] = [
@@ -154,7 +156,7 @@ export const Weapons = ({
 												.filter(
 													(field) => field !== 'name' && field !== 'notes',
 												)
-												.map((field) => (
+												.map((field, i) => (
 													<div
 														className={classNames('p-2', {
 															'col-span-1': ['type', 'range', 'mod'].includes(
@@ -181,6 +183,7 @@ export const Weapons = ({
 																	});
 																}
 															}}
+															autoFocus={i === 0}
 														/>
 													</div>
 												))}
@@ -212,7 +215,6 @@ export const Weapons = ({
 														style.height = `${scrollHeight}px`;
 													}}
 													className="w-full"
-													autoFocus
 												/>
 											</div>
 										</div>

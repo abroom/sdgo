@@ -4,6 +4,7 @@ import {
 	Core,
 	DEFAULT_CHARACTER_SHEET,
 	Defenses,
+	Spells,
 	Stats,
 	Weapons,
 } from '../components/CharacterSheet';
@@ -14,7 +15,7 @@ export const CharacterSheetPage = () => {
 		DEFAULT_CHARACTER_SHEET,
 	);
 
-	console.log('CharacterSheetPage', JSON.stringify(characterSheet, null, 10));
+	// console.log('CharacterSheetPage', JSON.stringify(characterSheet, null, 2));
 
 	const sectionProps = { characterSheet, setCharacterSheet };
 
@@ -24,8 +25,8 @@ export const CharacterSheetPage = () => {
 			<Stats {...sectionProps} />
 			<Defenses {...sectionProps} />
 			<Weapons {...sectionProps} />
+			<Spells {...sectionProps} />
 			{/* Add other sections like Spells, Talents, Gear as needed */}
-			{/* <Spells {...sectionProps} /> */}
 			{/* <Talents {...sectionProps} /> */}
 			{/* <Gear {...sectionProps} /> */}
 		</div>
