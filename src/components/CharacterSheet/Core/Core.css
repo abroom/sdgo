@@ -1,32 +1,55 @@
 @layer components {
-	.core .values {
-		> div {
-			display: flex;
+	.core > .core-items.values {
+		display: grid;
+		grid-template-columns: 1fr;
 
-			p {
-				padding: 0.5rem 1rem;
-			}
+		margin: 0;
+		padding: 1rem;
+
+		@media screen and (min-width: 40rem) {
+			grid-template-columns: repeat(2, minmax(200px, 1fr));
+		}
+
+		@media screen and (min-width: 48rem) {
+			grid-template-columns: repeat(3, minmax(200px, 1fr));
+		}
+
+		> .core-item {
+			display: flex;
+			flex-direction: column;
+			gap: 0.25rem;
+
+			border: solid;
+			border-radius: 8px;
+			padding: 0.5rem;
 
 			> :first-child {
+				flex-grow: 1;
 				display: flex;
 				align-items: center;
 				justify-content: center;
+				padding: 2px;
 
-				width: 33%;
-				min-width: fit-content;
-				font-weight: bold;
+				font-size: var(--text-xl);
 				text-align: center;
-				border: 1px solid var(--off-white);
-				border-right: dotted;
-				border-left: none;
-				border-top-right-radius: 10px;
+
+				p {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					height: 2rem;
+				}
+
+				input {
+					height: 2rem;
+					text-align: inherit;
+				}
 			}
 
 			> :last-child {
-				width: 67%;
-				min-width: 50%;
-				padding: 0.5rem;
-				border-bottom: 1px solid var(--off-white);
+				color: var(--grey);
+				text-align: center;
+				font-size: var(--text-sm);
 			}
 		}
 	}

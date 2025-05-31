@@ -31,8 +31,7 @@ export const CoreExperienceItem = ({
 	}
 
 	return (
-		<div>
-			<p>Experience</p>
+		<div className="core-item">
 			<div className="flex gap-[0.5rem]">
 				{current.isEditing ? (
 					<input
@@ -72,6 +71,7 @@ export const CoreExperienceItem = ({
 					</button>
 				)}
 			</div>
+			<p>Experience</p>
 		</div>
 	);
 };

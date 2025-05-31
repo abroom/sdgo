@@ -53,7 +53,7 @@ export const Stats = ({
 								{data.map((stat, index) => (
 									<div
 										key={index}
-										className="stat border border-(--off-white) rounded-lg h-[4.5rem] p-2 grid grid-cols-3 text-center"
+										className="stat border rounded-lg h-[4.5rem] p-2 grid grid-cols-3 text-center"
 									>
 										<span className="col-span-full flex flex-row gap-2 items-center justify-center p-2">
 											<input
@@ -115,7 +115,7 @@ export const Stats = ({
 							data.map((stat, index) => (
 								<div
 									key={index}
-									className="stat border border-(--off-white) rounded-lg h-[4.5rem] p-2 grid grid-cols-3 text-center gap-2"
+									className="stat border rounded-lg h-[4.5rem] p-2 grid grid-cols-3 text-center gap-2"
 								>
 									<span className="flex flex-col items-center justify-center">
 										<p className="text-2xl uppercase">

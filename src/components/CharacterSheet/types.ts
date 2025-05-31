@@ -9,7 +9,6 @@ export interface CharacterSheet {
 		background: string;
 		title: string;
 		alignment: string;
-		backstory: string;
 		deity: string;
 		lvl: string;
 		xp: { current: string; required: string };

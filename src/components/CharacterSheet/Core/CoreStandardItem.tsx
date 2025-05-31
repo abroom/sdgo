@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { type ChangeEvent } from 'react';
 
 export const CoreStandardItem = ({
@@ -20,12 +21,16 @@ export const CoreStandardItem = ({
 	}
 
 	return (
-		<div>
-			<p>{label}</p>
+		<button
+			className={classNames('core-item', 'md:col-span-1', {
+				'sm:col-span-full': label === 'Player',
+			})}
+			disabled={isEditing}
+			onClick={startEditing}
+		>
 			{isEditing ? (
 				<div>
 					<input
-						className="h-[46px]"
 						type="text"
 						value={value}
 						onChange={handleChange}
@@ -39,11 +44,10 @@ export const CoreStandardItem = ({
 				</div>
 			) : (
 				<div>
-					<button className="w-full text-left" onClick={startEditing}>
-						<p>{value}</p>
-					</button>
+					<p>{value}</p>
 				</div>
 			)}
-		</div>
+			<p>{label}</p>
+		</button>
 	);
 };

@@ -9,7 +9,6 @@ export const DEFAULT_CHARACTER_SHEET: CharacterSheet = {
 		background: 'Noble',
 		title: 'King of Gondor',
 		alignment: 'Lawful Good',
-		backstory: 'A ranger who is destined to reclaim the throne of Gondor.',
 		deity: 'Eru Ilúvatar',
 		lvl: '5',
 		xp: { current: '1200', required: '1500' },

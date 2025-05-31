@@ -22,7 +22,6 @@ const standardCoreLabelsByKey: {
 	background: 'Background',
 	title: 'Title',
 	alignment: 'Alignment',
-	backstory: 'Backstory',
 	deity: 'Deity',
 	lvl: 'Level',
 };
@@ -45,7 +44,7 @@ export const Core = ({
 		<section className="core">
 			{editors.has('name') ? (
 				<input
-					className="h-[3rem] my-[0.55rem] mx-[1rem] w-[calc(100%-2rem)]"
+					className="mx-[1rem] my-[0.5rem] h-[3rem] w-[calc(100%-2rem)] text-center text-4xl"
 					ref={nameRef}
 					type="text"
 					placeholder="Unnamed Crawler"
@@ -70,10 +69,12 @@ export const Core = ({
 				/>
 			) : (
 				<button
-					className={classNames('w-full', { toggled: !isContentVisible })}
+					className={classNames('h-[4rem] w-full', {
+						toggled: !isContentVisible,
+					})}
 					onClick={() => setIsContentVisible((prev) => !prev)}
 				>
-					<h1>{core.name || 'Unnamed Crawler'}</h1>
+					<h1 className="text-4xl">{core.name || 'Unnamed Crawler'}</h1>
 				</button>
 			)}
 			{isContentVisible && (
@@ -102,7 +103,7 @@ export const Core = ({
 							});
 						}}
 					/>
-					<div className="values">
+					<div className="values core-items">
 						{Object.entries(standardCoreLabelsByKey).map(([key, label]) => (
 							<CoreStandardItem
 								key={key}
