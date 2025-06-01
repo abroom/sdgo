@@ -2,17 +2,10 @@ import { PlusCircleIcon, TrashIcon } from '@heroicons/react/24/solid';
 import classNames from 'classnames';
 import { useState } from 'react';
 
-import { SectionUtils } from '../SectionUtils';
-import type { CharacterSheetSectionProps } from '../types';
+import { SectionHeader } from '../SectionHeader';
 
-export const Stats = ({
-	characterSheet: {
-		stats: { data, notes },
-	},
-	setCharacterSheet,
-}: CharacterSheetSectionProps) => {
+export const Stats = () => {
 	const [isContentVisible, setIsContentVisible] = useState(true);
-	const [editors, setEditors] = useState<Set<string>>(new Set());
 
 	return (
 		<section className="stats">
@@ -24,7 +17,7 @@ export const Stats = ({
 			</button>
 			{isContentVisible && (
 				<>
-					<SectionUtils
+					<SectionHeader
 						notes={notes}
 						handleNotesChange={({ target: { value } }) =>
 							setCharacterSheet((prev) => ({
@@ -72,6 +65,14 @@ export const Stats = ({
 														},
 													}))
 												}
+												onKeyDown={(e) => {
+													if (['Enter', 'Escape'].includes(e.key)) {
+														setEditors((prev) => {
+															prev.delete('stats');
+															return new Set(prev);
+														});
+													}
+												}}
 											/>
 											<button
 												className="text-red-500 p-2"
@@ -113,9 +114,15 @@ export const Stats = ({
 							</>
 						) : (
 							data.map((stat, index) => (
-								<div
+								<button
 									key={index}
 									className="stat border rounded-lg h-[4.5rem] p-2 grid grid-cols-3 text-center gap-2"
+									onClick={() => {
+										setEditors((prev) => {
+											prev.add(stat.name);
+											return new Set(prev);
+										});
+									}}
 								>
 									<span className="flex flex-col items-center justify-center">
 										<p className="text-2xl uppercase">
@@ -178,24 +185,16 @@ export const Stats = ({
 											/>
 										</>
 									) : (
-										<button
-											className="col-span-2 grid grid-cols-2"
-											onClick={() => {
-												setEditors((prev) => {
-													prev.add(stat.name);
-													return new Set(prev);
-												});
-											}}
-										>
+										<div className="col-span-2 grid grid-cols-2">
 											<div className="flex items-center justify-center">
 												<span className="text-4xl">{stat.score}</span>
 											</div>
 											<div className="flex items-center justify-center">
 												<span className="text-4xl">{stat.mod}</span>
 											</div>
-										</button>
+										</div>
 									)}
-								</div>
+								</button>
 							))
 						)}
 					</div>

@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import { useState } from 'react';
 
-import { SectionUtils } from '../SectionUtils';
-import type { CharacterSheetSectionProps } from '../types';
+import { SectionHeader } from '../SectionHeader';
+import type { CharacterSheetSectionProps } from '../../../types/CrawlerSheet';
 
 export const Defenses = ({
 	characterSheet: {
@@ -23,7 +23,7 @@ export const Defenses = ({
 			</button>
 			{isContentVisible && (
 				<>
-					<SectionUtils
+					<SectionHeader
 						notes={notes}
 						handleNotesChange={({ target: { value } }) =>
 							setCharacterSheet((prev) => ({

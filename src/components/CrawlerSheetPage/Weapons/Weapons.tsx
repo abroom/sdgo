@@ -2,8 +2,11 @@ import classNames from 'classnames';
 import { useState } from 'react';
 import { TrashIcon, PlusCircleIcon } from '@heroicons/react/24/solid';
 
-import { SectionUtils } from '../SectionUtils';
-import type { CharacterSheet, CharacterSheetSectionProps } from '../types';
+import { SectionHeader } from '../SectionHeader';
+import type {
+	CrawlerSheet,
+	CharacterSheetSectionProps,
+} from '../../../types/CrawlerSheet';
 import { useCallback } from 'react';
 
 export const Weapons = ({
@@ -15,7 +18,7 @@ export const Weapons = ({
 	);
 	const [editors, setEditors] = useState<Set<string>>(new Set());
 
-	const fields: (keyof CharacterSheet['weapons']['data'][number])[] = [
+	const fields: (keyof CrawlerSheet['weapons']['data'][number])[] = [
 		'name',
 		'type',
 		'range',
@@ -84,7 +87,7 @@ export const Weapons = ({
 			</button>
 			{isContentVisible && (
 				<>
-					<SectionUtils
+					<SectionHeader
 						notes={weapons.notes}
 						handleNotesChange={({ target: { value } }) =>
 							setCharacterSheet((prev) => ({

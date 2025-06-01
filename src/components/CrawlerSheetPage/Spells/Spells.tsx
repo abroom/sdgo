@@ -9,8 +9,11 @@ import {
 	BoltSlashIcon,
 } from '@heroicons/react/24/solid';
 
-import { SectionUtils } from '../SectionUtils';
-import type { CharacterSheet, CharacterSheetSectionProps } from '../types';
+import { SectionHeader } from '../SectionHeader';
+import type {
+	CrawlerSheet,
+	CharacterSheetSectionProps,
+} from '../../../types/CrawlerSheet';
 import { useCallback } from 'react';
 
 export const Spells = ({
@@ -23,7 +26,7 @@ export const Spells = ({
 	const [editors, setEditors] = useState<Set<string>>(new Set());
 
 	const spellFields: (keyof Omit<
-		CharacterSheet['spells']['data'][number]['spells'][number],
+		CrawlerSheet['spells']['data'][number]['spells'][number],
 		'name' | 'forgotten' | 'effect' | 'notes'
 	>)[] = ['range', 'duration', 'mod', 'dc'];
 
@@ -142,7 +145,7 @@ export const Spells = ({
 			</button>
 			{isContentVisible && (
 				<>
-					<SectionUtils
+					<SectionHeader
 						notes={spells.notes}
 						handleNotesChange={({ target: { value } }) =>
 							setCharacterSheet((prev) => ({

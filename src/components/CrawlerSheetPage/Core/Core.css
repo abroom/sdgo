@@ -1,5 +1,5 @@
 @layer components {
-	.core > .core-items.values {
+	.core > .core-content > .core-items.values {
 		display: grid;
 		grid-template-columns: 1fr;
 
@@ -14,7 +14,7 @@
 			grid-template-columns: repeat(3, minmax(200px, 1fr));
 		}
 
-		> .core-item {
+		.core-item {
 			display: flex;
 			flex-direction: column;
 			gap: 0.25rem;

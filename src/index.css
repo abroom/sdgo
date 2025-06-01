@@ -2,9 +2,17 @@
 
 @layer base {
 	:root {
-		--background-color: var(--black);
-		--text-color: var(--white);
+		/* Theme */
+		--primary: var(--black);
+		--primary-2: var(--black-2);
+		--primary-3: var(--black-3);
 
+		--secondary: var(--white);
+		--secondary-2: var(--off-white);
+
+		--tertiary: var(--grey);
+
+		/* Colors */
 		--black: #000000;
 		--black-2: #191919;
 		--black-3: #111111;
@@ -19,7 +27,6 @@
 
 	* {
 		border-color: var(--off-white);
-		overflow: auto;
 	}
 
 	body {
@@ -33,6 +40,7 @@
 			:focus-visible {
 				box-shadow: 0 0 10px var(--off-white);
 				outline: 2px solid var(--off-white);
+				z-index: 1;
 			}
 
 			button {
@@ -42,6 +50,7 @@
 				&:hover {
 					box-shadow: 0 0 10px var(--off-white);
 					outline: 2px solid var(--off-white);
+					z-index: 1;
 				}
 			}
 
@@ -51,7 +60,7 @@
 				border-radius: 5px;
 				padding: 0.5rem 1rem;
 				background-color: var(--grey);
-				color: var(--text-color);
+				color: var(--secondary);
 			}
 		}
 	}

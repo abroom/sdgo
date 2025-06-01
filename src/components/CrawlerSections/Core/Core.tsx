@@ -2,20 +2,20 @@ import classNames from 'classnames';
 import { useEffect, useRef, useState } from 'react';
 
 import { SectionUtils } from '../SectionUtils';
-import type { CharacterSheet, CharacterSheetSectionProps } from '../types';
+import type { CrawlerSheet } from '../../../types/CrawlerSheet';
 
 import { CoreStandardItem } from './CoreStandardItem';
 import { CoreExperienceItem } from './CoreExperienceItem';
 
 import './Core.css';
+import { Editors } from '../../Editors/Editors';
 
 type CoreStandardItemKey = keyof Omit<
-	CharacterSheet['core'],
+	CrawlerSheet['core'],
 	'name' | 'xp' | 'notes'
 >;
-const standardCoreLabelsByKey: {
-	[key in CoreStandardItemKey]: string;
-} = {
+
+const standardCoreLabelsByKey: Record<CoreStandardItemKey, string> = {
 	player: 'Player',
 	class: 'Class',
 	ancestry: 'Ancestry',
@@ -26,10 +26,7 @@ const standardCoreLabelsByKey: {
 	lvl: 'Level',
 };
 
-export const Core = ({
-	characterSheet: { core },
-	setCharacterSheet,
-}: CharacterSheetSectionProps) => {
+export const Core = () => {
 	const [isContentVisible, setIsContentVisible] = useState(true);
 	const [editors, setEditors] = useState<Set<string>>(new Set());
 	const nameRef = useRef<HTMLInputElement>(null);
@@ -42,7 +39,16 @@ export const Core = ({
 
 	return (
 		<section className="core">
-			{editors.has('name') ? (
+			<Editors<CrawlerSheet['core']>>
+				{({ isEditorEnabled, toggleEditor }) => (
+					<div className="flex items-center justify-between">
+						<button onClick={() => toggleEditor('name')}>
+							{isEditorEnabled('name') ? 'Disable' : 'Enable'}
+						</button>
+					</div>
+				)}
+			</Editors>
+			{/* {editors.has('name') ? (
 				<input
 					className="mx-[1rem] my-[0.5rem] h-[3rem] w-[calc(100%-2rem)] text-center text-4xl"
 					ref={nameRef}
@@ -187,7 +193,7 @@ export const Core = ({
 						/>
 					</div>
 				</>
-			)}
+			)} */}
 		</section>
 	);
 };

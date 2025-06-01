@@ -1,9 +1,9 @@
-import { CharacterSheetPage } from './pages/CharacterSheetPage';
+import { CrawlerSheetPage } from '@/pages/CrawlerSheetPage/CrawlerSheetPage';
 
 export const App = () => {
 	return (
 		<>
-			<CharacterSheetPage />
+			<CrawlerSheetPage />
 		</>
 	);
 };

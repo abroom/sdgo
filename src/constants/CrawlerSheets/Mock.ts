@@ -1,6 +1,6 @@
-import type { CharacterSheet } from './types';
+import type { CrawlerSheet } from '../../types/CrawlerSheet';
 
-export const DEFAULT_CHARACTER_SHEET: CharacterSheet = {
+export const CRAWLER_SHEET__MOCK: CrawlerSheet = {
 	core: {
 		name: 'Aragorn',
 		player: 'John Doe',
