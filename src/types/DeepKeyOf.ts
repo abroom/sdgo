@@ -1,4 +1,4 @@
-export type DeepKeyOf<T> = T extends unknown[]
+export type DeepKeyOf<T> = T extends readonly unknown[]
 	? `${keyof T & number}` | `${keyof T & number}.${DeepKeyOf<T[number]>}`
 	: T extends object
 		? {

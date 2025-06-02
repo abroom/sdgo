@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import { useState } from 'react';
 
 import { SectionHeader } from '../SectionHeader';
@@ -16,7 +15,7 @@ export const Defenses = ({
 	return (
 		<section className="defenses">
 			<button
-				className={classNames('w-full', { toggled: !isContentVisible })}
+				className="w-full"
 				onClick={() => setIsContentVisible((prev) => !prev)}
 			>
 				<h2>Defenses</h2>

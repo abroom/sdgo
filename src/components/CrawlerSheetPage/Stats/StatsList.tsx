@@ -1,4 +1,12 @@
 export const StatsList = () => {
+
+	<div className="stats-header grid grid-cols-3 gap-2 text-center">
+		{['Name', 'Score', 'Mod'].map((label) => (
+			<span key={label} className="text-(--grey) text-sm">
+				{label}
+			</span>
+		))}
+	</div>
 	<button
 		key={index}
 		className="stat border rounded-lg h-[4.5rem] p-2 grid grid-cols-3 text-center gap-2"

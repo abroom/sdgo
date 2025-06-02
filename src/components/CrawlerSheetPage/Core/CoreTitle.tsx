@@ -1,14 +1,12 @@
 import {
+	type ChangeEvent,
 	memo,
 	useCallback,
 	useEffect,
 	useMemo,
 	useRef,
 	useState,
-	type ChangeEvent,
 } from 'react';
-
-import classNames from 'classnames';
 
 import type { Editors } from '@/hooks/Editors';
 import type { CrawlerSheet, UpdateCrawlerSheet } from '@/types/CrawlerSheet';
@@ -37,18 +35,14 @@ export const CoreTitle = memo(function CoreTitle({
 		[editors],
 	);
 
-	const persistTimoutRef = useRef<number>(null);
+	const persistTimeoutRef = useRef<number>(undefined);
 	const handleChange = useCallback(
 		({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
 			setName(value);
-
-			if (persistTimoutRef.current) {
-				clearTimeout(persistTimoutRef.current);
-			}
-
-			persistTimoutRef.current = setTimeout(() => {
+			clearTimeout(persistTimeoutRef.current);
+			persistTimeoutRef.current = setTimeout(() => {
 				updateCrawlerSheet({ core: { name: value } });
-				persistTimoutRef.current = null;
+				persistTimeoutRef.current = undefined;
 			}, 500);
 		},
 		[updateCrawlerSheet],
@@ -63,7 +57,7 @@ export const CoreTitle = memo(function CoreTitle({
 
 	return (
 		<button
-			className={classNames('title', 'p-4', 'text-5xl')}
+			className="border-none w-full p-4 text-5xl"
 			disabled={isNameEditorEnabled}
 			onClick={toggleContent}
 		>
@@ -82,9 +76,9 @@ export const CoreTitle = memo(function CoreTitle({
 					}}
 				/>
 			) : (
-				<h1 className="h-15 flex items-center justify-center">
-					{name || namePlaceholder}
-				</h1>
+				<div className="h-15 min-h-fit flex items-center overflow-auto">
+					<h1 className="flex-grow">{name || namePlaceholder}</h1>
+				</div>
 			)}
 		</button>
 	);

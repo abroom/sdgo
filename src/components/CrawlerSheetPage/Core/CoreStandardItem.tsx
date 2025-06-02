@@ -6,24 +6,23 @@ import {
 	useState,
 } from 'react';
 
-import classNames from 'classnames';
-
 import type { Editors } from '@/hooks/Editors';
 import type { CrawlerSheet, UpdateCrawlerSheet } from '@/types/CrawlerSheet';
 import { isKeyExit } from '@/utils/IsKeyExit';
 
+import { CoreItem } from './CoreItem';
 import { standardItemLabelsByKey } from './constants';
 import type { CoreStandardItemKey } from './types';
 
 export const CoreStandardItem = ({
 	core,
-	editors,
 	itemKey,
+	editors,
 	updateCrawlerSheet,
 }: {
 	readonly core: CrawlerSheet['core'];
-	readonly editors: Editors<CrawlerSheet['core']>;
 	readonly itemKey: CoreStandardItemKey;
+	readonly editors: Editors<CrawlerSheet['core']>;
 	readonly updateCrawlerSheet: UpdateCrawlerSheet;
 }) => {
 	const [coreValue, setCoreValue] = useState(core[itemKey]);
@@ -31,18 +30,14 @@ export const CoreStandardItem = ({
 		setCoreValue(core[itemKey]);
 	}, [core, itemKey]);
 
-	const persistTimoutRef = useRef<number>(null);
+	const persistTimeoutRef = useRef<number>(undefined);
 	const handleChange = useCallback(
 		({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
 			setCoreValue(value);
-
-			if (persistTimoutRef.current) {
-				clearTimeout(persistTimoutRef.current);
-			}
-
-			persistTimoutRef.current = setTimeout(() => {
+			clearTimeout(persistTimeoutRef.current);
+			persistTimeoutRef.current = setTimeout(() => {
 				updateCrawlerSheet({ core: { [itemKey]: value } });
-				persistTimoutRef.current = null;
+				persistTimeoutRef.current = undefined;
 			}, 500);
 		},
 		[itemKey, updateCrawlerSheet],
@@ -54,15 +49,15 @@ export const CoreStandardItem = ({
 
 	return (
 		<button
-			className={classNames('core-item')}
+			className="flex flex-col"
 			disabled={editors.enabled.has(itemKey)}
 			onClick={() => editors.toggle([itemKey])}
 		>
-			<div>
+			<CoreItem label={standardItemLabelsByKey[itemKey]}>
 				{editors.enabled.has(itemKey) ? (
 					<input
 						autoFocus
-						className="h-8"
+						className="text-center"
 						onChange={handleChange}
 						onKeyDown={(e) => {
 							if (isKeyExit(e)) {
@@ -73,10 +68,9 @@ export const CoreStandardItem = ({
 						value={coreValue}
 					/>
 				) : (
-					<p className="h-8 min-h-fit overflow-auto">{coreValue}</p>
+					<p className="flex-grow py-1">{coreValue}</p>
 				)}
-			</div>
-			<p>{standardItemLabelsByKey[itemKey]}</p>
+			</CoreItem>
 		</button>
 	);
 };

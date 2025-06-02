@@ -1,49 +1,82 @@
+import {
+	type ChangeEvent,
+	memo,
+	useCallback,
+	useEffect,
+	useRef,
+	useState,
+} from 'react';
+
 import TrashIcon from '@heroicons/react/24/solid/TrashIcon';
 
-export const StatsEditorRow = () => {
+import type { Editors } from '@/hooks/Editors';
+import type { CrawlerSheet, UpdateCrawlerSheet } from '@/types/CrawlerSheet';
+import { isKeyExit } from '@/utils/IsKeyExit';
+
+export const StatsEditorRow = memo(function StatsEditorRow({
+	data,
+	index,
+	editors,
+	updateCrawlerSheet,
+}: {
+	readonly data: CrawlerSheet['stats']['data'];
+	readonly index: number;
+	readonly editors: Editors<CrawlerSheet['stats']>;
+	readonly updateCrawlerSheet: UpdateCrawlerSheet;
+}) {
+	console.log('StatsEditorRow render', { data, index, editors });
+
+	const [statName, setStatName] = useState(data[index].name);
+	useEffect(() => {
+		setStatName(data[index].name);
+	}, [data, index]);
+
+	const persistTimeoutRef = useRef<number>(undefined);
+	const handleChange = useCallback(
+		({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
+			setStatName(value);
+			clearTimeout(persistTimeoutRef.current);
+			persistTimeoutRef.current = setTimeout(() => {
+				updateCrawlerSheet({
+					stats: {
+						data: data.map((s, i) => (i === index ? { ...s, name: value } : s)),
+					},
+				});
+				persistTimeoutRef.current = undefined;
+			}, 500);
+		},
+		[data, index, updateCrawlerSheet],
+	);
+
 	return (
-		<div className="stat border rounded-lg h-[4.5rem] p-2 grid grid-cols-3 text-center">
+		<div className="stats-item">
 			<span className="col-span-full flex flex-row gap-2 items-center justify-center p-2">
 				<input
 					className="text-xl h-[2.6rem] border rounded px-2"
 					type="text"
-					value={stat.name}
+					value={statName}
 					placeholder="Stat Name"
-					onChange={({ target: { value } }) =>
-						setCharacterSheet((prev) => ({
-							...prev,
-							stats: {
-								...prev.stats,
-								data: prev.stats.data.map((s, i) =>
-									i === index ? { ...s, name: value } : s,
-								),
-							},
-						}))
-					}
+					onChange={handleChange}
 					onKeyDown={(e) => {
-						if (['Enter', 'Escape'].includes(e.key)) {
-							setEditors((prev) => {
-								prev.delete('stats');
-								return new Set(prev);
-							});
+						if (isKeyExit(e)) {
+							editors.toggle([`data`]);
 						}
 					}}
 				/>
 				<button
 					className="text-red-500 p-2"
-					onClick={() =>
-						setCharacterSheet((prev) => ({
-							...prev,
+					onClick={() => {
+						clearTimeout(persistTimeoutRef.current);
+						updateCrawlerSheet({
 							stats: {
-								...prev.stats,
-								data: prev.stats.data.filter((_, i) => i !== index),
+								data: data.filter((_, i) => i !== index),
 							},
-						}))
-					}
+						});
+					}}
 				>
 					<TrashIcon width={24} />
 				</button>
 			</span>
 		</div>
 	);
-};
+});

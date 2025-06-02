@@ -1,0 +1,42 @@
+@import 'tailwindcss';
+
+@theme {
+	--color-primary: var(--color-black);
+	--color-primary-2: var(--color-neutral-800);
+	--color-primary-3: var(--color-neutral-500);
+
+	--color-secondary: var(--color-neutral-300);
+	--color-secondary-2: var(--color-neutral-100);
+
+	--color-tertiary: var(--color-slate-700);
+
+	--highlight: 0 0 6px var(--color-secondary);
+}
+
+@layer base {
+	body {
+		@apply h-screen w-screen
+			bg-(--color-primary-3)
+			text-(--color-secondary);
+	}
+
+	#root {
+		@apply h-full w-full;
+	}
+
+	button,
+	input,
+	textarea {
+		@apply border rounded-md
+			not-disabled:hover:outline-1 hover:outline-(--color-secondary)
+			not-disabled:focus-visible:outline-1 focus-visible:outline-(--color-secondary)
+			not-disabled:hover:shadow-(--highlight)
+			not-disabled:focus-visible:shadow-(--highlight)
+			not-disabled:cursor-pointer;
+	}
+
+	input,
+	textarea {
+		@apply w-full px-4 py-2 bg-(--color-tertiary) text-(--color-secondary-2);
+	}
+}

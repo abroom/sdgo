@@ -26,7 +26,7 @@ export const CoreContent = memo(function CoreContent({
 	readonly updateCrawlerSheet: UpdateCrawlerSheet;
 }) {
 	return (
-		<div className="content core-content">
+		<div>
 			<SectionHeader
 				edit={{
 					isToggled: editors.enabled.size > 0,
@@ -48,19 +48,19 @@ export const CoreContent = memo(function CoreContent({
 					},
 				}}
 			/>
-			<div className="values core-items">
+			<div className="my-2 p-2 grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-2 justify-around">
 				{standardItemKeys.map((itemKey) => (
 					<CoreStandardItem
 						key={itemKey}
 						core={core}
-						editors={editors}
 						itemKey={itemKey}
+						editors={editors}
 						updateCrawlerSheet={updateCrawlerSheet}
 					/>
 				))}
 				<CoreExperienceItem
-					editors={editors}
 					xp={core.xp}
+					editors={editors}
 					updateCrawlerSheet={updateCrawlerSheet}
 				/>
 			</div>

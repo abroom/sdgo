@@ -37,24 +37,21 @@ export const SectionHeader = ({
 		setNotesDisplay(notes?.value || '');
 	}, [notes?.value]);
 
-	const persistTimoutRef = useRef<number>(null);
+	const persistTimeoutRef = useRef<number>(undefined);
 	const handleNotesChange = useCallback(
 		({ target: { value } }: ChangeEvent<HTMLTextAreaElement>) => {
 			setNotesDisplay(value);
-
-			if (persistTimoutRef.current) {
-				clearTimeout(persistTimoutRef.current);
-			}
-			persistTimoutRef.current = setTimeout(() => {
+			clearTimeout(persistTimeoutRef.current);
+			persistTimeoutRef.current = setTimeout(() => {
 				notes?.persistValue(value);
-				persistTimoutRef.current = null;
+				persistTimeoutRef.current = undefined;
 			}, 500);
 		},
 		[notes],
 	);
 
 	return (
-		<div className="section-header border-t mx-2">
+		<div className="mx-2 border-t border-b">
 			<div className="p-2 flex gap-2 justify-end">
 				{notes ? (
 					<button
@@ -71,37 +68,35 @@ export const SectionHeader = ({
 				) : null}
 			</div>
 			{showNotes && (
-				<div>
-					<p className="text-sm font-semibold">Notes</p>
+				<div className="p-2 pt-0">
 					{notes?.isEditing ? (
-						<div className="p-2">
-							<textarea
-								autoFocus
-								onChange={handleNotesChange}
-								onFocus={resizeElement}
-								onKeyDown={(e) => {
-									if (isKeyExit(e, true)) {
-										notes?.toggleEditor(false);
-									} else {
-										resizeElement(e);
-									}
-								}}
-								value={notesDisplay}
-							/>
-						</div>
+						<textarea
+							autoFocus
+							className="-mb-1"
+							onChange={handleNotesChange}
+							onFocus={resizeElement}
+							onKeyDown={(e) => {
+								if (isKeyExit(e, true)) {
+									notes?.toggleEditor(false);
+								} else {
+									resizeElement(e);
+								}
+							}}
+							value={notesDisplay}
+						/>
 					) : (
-						<div className="p-2">
-							<button
-								className="w-full min-h-[4rem] p-[1rem] text-left bg-(--black-3)"
-								onClick={() => notes?.toggleEditor(true)}
-							>
-								<p className="overflow-scroll whitespace-pre-wrap">
-									{notesDisplay || (
-										<i className="text-(--gray) select-none">Click to edit</i>
-									)}
-								</p>
-							</button>
-						</div>
+						<button
+							className="w-full min-h-12 p-2 text-left bg-(--color-primary-2)"
+							onClick={() => notes?.toggleEditor(true)}
+						>
+							<p className="min-h-12 px-2 overflow-scroll whitespace-pre-wrap">
+								{notesDisplay || (
+									<i className="text-(--color-primary-3) select-none">
+										Write notes here...
+									</i>
+								)}
+							</p>
+						</button>
 					)}
 				</div>
 			)}

@@ -4,6 +4,7 @@ import type { Editors } from '@/hooks/Editors';
 import type { CrawlerSheet, UpdateCrawlerSheet } from '@/types/CrawlerSheet';
 
 import { SectionHeader } from '../SectionHeader';
+import { StatsEditor } from './StatsEditor';
 
 export const StatsContent = memo(function StatsContent({
 	stats,
@@ -23,7 +24,7 @@ export const StatsContent = memo(function StatsContent({
 						if (editors.enabled.size > 0) {
 							editors.disableAll();
 						} else {
-							editors.toggle(['stats']);
+							editors.toggle(['data']);
 						}
 					},
 				}}
@@ -38,13 +39,12 @@ export const StatsContent = memo(function StatsContent({
 				}}
 			/>
 			<div className="values stats-items">
-				<div className="stats-header grid grid-cols-3 text-center px-4 gap-2">
-					<span>Name</span>
-					<span>Score</span>
-					<span>Mod</span>
-				</div>
-				{editors.enabled.has('stats') ? (
-					<pre>TODO StatsEditor</pre>
+				{editors.enabled.has('data') ? (
+					<StatsEditor
+						data={stats.data}
+						editors={editors}
+						updateCrawlerSheet={updateCrawlerSheet}
+					/>
 				) : (
 					<pre>TODO StatsList</pre>
 				)}

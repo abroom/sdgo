@@ -4,7 +4,10 @@ import { CrawlerSheetContext } from '@/contexts/CrawlerSheetContext/CrawlerSheet
 import { useEditors } from '@/hooks/Editors';
 import type { CrawlerSheet } from '@/types/CrawlerSheet';
 
+import { Section } from '../Section';
 import { StatsContent } from './StatsContent';
+
+import './Stats.css';
 
 export const Stats = () => {
 	const [isContentVisible, setIsContentVisible] = useState(true);
@@ -19,7 +22,7 @@ export const Stats = () => {
 	console.log('Stats render', { stats, editors });
 
 	return (
-		<section className="stats">
+		<Section>
 			<button
 				className="title"
 				onClick={() => setIsContentVisible((prev) => !prev)}
@@ -33,6 +36,6 @@ export const Stats = () => {
 					updateCrawlerSheet={updateCrawlerSheet}
 				/>
 			)}
-		</section>
+		</Section>
 	);
 };
