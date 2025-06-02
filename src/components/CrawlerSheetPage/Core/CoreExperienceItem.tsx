@@ -1,27 +1,66 @@
-import { useContext } from 'react';
+import {
+	type ChangeEvent,
+	useCallback,
+	useEffect,
+	useRef,
+	useState,
+} from 'react';
 
-import type { EditorsControls } from '@/components/Editors/Editors';
-import { CrawlerSheetContext } from '@/contexts/CrawlerSheetContext/CrawlerSheetContext';
-import type { CrawlerSheet } from '@/types/CrawlerSheet';
+import type { Editors } from '@/hooks/Editors';
+import type { CrawlerSheet, UpdateCrawlerSheet } from '@/types/CrawlerSheet';
 import { isKeyExit } from '@/utils/IsKeyExit';
 
 export const CoreExperienceItem = ({
-	editorsControls: { editors, toggleEditors },
+	xp,
+	editors,
+	updateCrawlerSheet,
 }: {
-	readonly editorsControls: EditorsControls<CrawlerSheet['core']>;
+	readonly xp: CrawlerSheet['core']['xp'];
+	readonly editors: Editors<CrawlerSheet['core']>;
+	readonly updateCrawlerSheet: UpdateCrawlerSheet;
 }) => {
-	const {
-		crawlerSheet: {
-			core: { xp },
+	const [xpCurrent, setXpCurrent] = useState(xp.current);
+	const [xpRequired, setXpRequired] = useState(xp.required);
+	useEffect(() => {
+		setXpCurrent(xp.current);
+		setXpRequired(xp.required);
+	}, [xp]);
+
+	const persistCurrentTimeoutRef = useRef<number>(null);
+	const persistRequiredTimeoutRef = useRef<number>(null);
+
+	const handleCurrentChange = useCallback(
+		({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
+			setXpCurrent(value);
+			if (persistCurrentTimeoutRef.current) {
+				clearTimeout(persistCurrentTimeoutRef.current);
+			}
+			persistCurrentTimeoutRef.current = setTimeout(() => {
+				updateCrawlerSheet({ core: { xp: { current: value } } });
+				persistCurrentTimeoutRef.current = null;
+			}, 500);
 		},
-		updateCrawlerSheet,
-	} = useContext(CrawlerSheetContext);
+		[updateCrawlerSheet],
+	);
+	const handleRequiredChange = useCallback(
+		({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
+			setXpRequired(value);
+			if (persistRequiredTimeoutRef.current) {
+				clearTimeout(persistRequiredTimeoutRef.current);
+			}
+			persistRequiredTimeoutRef.current = setTimeout(() => {
+				updateCrawlerSheet({ core: { xp: { required: value } } });
+				persistRequiredTimeoutRef.current = null;
+			}, 500);
+		},
+		[updateCrawlerSheet],
+	);
 
 	if (
-		!xp.current &&
-		!xp.required &&
-		!editors.has('xp.current') &&
-		!editors.has('xp.required')
+		!xpCurrent &&
+		!xpRequired &&
+		!editors.enabled.has('xp.current') &&
+		!editors.enabled.has('xp.required')
 	) {
 		return null;
 	}
@@ -29,54 +68,50 @@ export const CoreExperienceItem = ({
 	return (
 		<div className="core-item">
 			<div className="flex gap-[0.5rem]">
-				{editors.has('xp.current') ? (
+				{editors.enabled.has('xp.current') ? (
 					<input
 						autoFocus
 						className="flex-grow px-2 h-8 max-w-[calc((100%-1.5rem)/2)] text-right"
-						onChange={({ target: { value } }) =>
-							updateCrawlerSheet({ core: { xp: { current: value } } })
-						}
+						onChange={handleCurrentChange}
 						onKeyDown={(e) => {
 							if (isKeyExit(e)) {
-								toggleEditors(['xp.current']);
+								editors.toggle(['xp.current']);
 							}
 						}}
 						type="text"
-						value={xp.current}
+						value={xpCurrent}
 					/>
 				) : (
 					<button
 						className="flex-grow max-w-[calc((100%-1.5rem)/2)]"
-						onClick={() => toggleEditors(['xp.current'])}
+						onClick={() => editors.toggle(['xp.current'])}
 					>
 						<p className="px-2 h-8 min-h-fit justify-end overflow-auto">
-							{xp.current}
+							{xpCurrent}
 						</p>
 					</button>
 				)}
 				<p className="px-0 w-[0.5rem] text-center">/</p>
-				{editors.has('xp.required') ? (
+				{editors.enabled.has('xp.required') ? (
 					<input
 						autoFocus
 						className="flex-grow px-2 h-8 max-w-[calc((100%-1.5rem)/2)] text-left"
-						onChange={({ target: { value } }) =>
-							updateCrawlerSheet({ core: { xp: { required: value } } })
-						}
+						onChange={handleRequiredChange}
 						onKeyDown={(e) => {
 							if (isKeyExit(e)) {
-								toggleEditors(['xp.required']);
+								editors.toggle(['xp.required']);
 							}
 						}}
 						type="text"
-						value={xp.required}
+						value={xpRequired}
 					/>
 				) : (
 					<button
 						className="flex-grow max-w-[calc((100%-1.5rem)/2)]"
-						onClick={() => toggleEditors(['xp.required'])}
+						onClick={() => editors.toggle(['xp.required'])}
 					>
 						<p className="px-2 h-8 min-h-fit justify-start overflow-auto">
-							{xp.required}
+							{xpRequired}
 						</p>
 					</button>
 				)}

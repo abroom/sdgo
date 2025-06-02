@@ -1,14 +1,13 @@
-import { useContext } from 'react';
+import { memo } from 'react';
 
-import type { EditorsControls } from '@/components/Editors/Editors';
-import { CrawlerSheetContext } from '@/contexts/CrawlerSheetContext/CrawlerSheetContext';
-import type { CrawlerSheet } from '@/types/CrawlerSheet';
+import type { Editors } from '@/hooks/Editors';
+import type { CrawlerSheet, UpdateCrawlerSheet } from '@/types/CrawlerSheet';
+import type { DeepKeyOf } from '@/types/DeepKeyOf';
 
 import { SectionHeader } from '../SectionHeader';
 import { standardItemKeys } from './constants';
-import { CoreStandardItem } from './CoreStandardItem';
-import type { DeepKeyOf } from '@/types/DeepKeyOf';
 import { CoreExperienceItem } from './CoreExperienceItem';
+import { CoreStandardItem } from './CoreStandardItem';
 
 const headerEnableEditorKeys: DeepKeyOf<CrawlerSheet['core']>[] = [
 	'name',
@@ -17,38 +16,35 @@ const headerEnableEditorKeys: DeepKeyOf<CrawlerSheet['core']>[] = [
 	'xp.required',
 ];
 
-export const CoreContent = ({
-	editorsControls,
+export const CoreContent = memo(function CoreContent({
+	core,
+	editors,
+	updateCrawlerSheet,
 }: {
-	readonly editorsControls: EditorsControls<CrawlerSheet['core']>;
-}) => {
-	const { editors, clearEditors, toggleEditors } = editorsControls;
-
-	const {
-		crawlerSheet: { core },
-		updateCrawlerSheet,
-	} = useContext(CrawlerSheetContext);
-
+	readonly core: CrawlerSheet['core'];
+	readonly editors: Editors<CrawlerSheet['core']>;
+	readonly updateCrawlerSheet: UpdateCrawlerSheet;
+}) {
 	return (
 		<div className="content core-content">
 			<SectionHeader
 				edit={{
-					isToggled: editors.size > 0,
+					isToggled: editors.enabled.size > 0,
 					handleClick: () => {
-						if (editors.size > 0) {
-							clearEditors();
+						if (editors.enabled.size > 0) {
+							editors.disableAll();
 						} else {
-							toggleEditors(headerEnableEditorKeys);
+							editors.toggle(headerEnableEditorKeys);
 						}
 					},
 				}}
 				notes={{
-					isEditing: editors.has('notes'),
+					isEditing: editors.enabled.has('notes'),
 					value: core.notes,
-					handleChange: ({ target: { value } }) =>
+					persistValue: (value) =>
 						updateCrawlerSheet({ core: { notes: value } }),
 					toggleEditor: (isEnabled) => {
-						toggleEditors(['notes'], isEnabled);
+						editors.toggle(['notes'], isEnabled);
 					},
 				}}
 			/>
@@ -56,12 +52,18 @@ export const CoreContent = ({
 				{standardItemKeys.map((itemKey) => (
 					<CoreStandardItem
 						key={itemKey}
-						editorsControls={editorsControls}
+						core={core}
+						editors={editors}
 						itemKey={itemKey}
+						updateCrawlerSheet={updateCrawlerSheet}
 					/>
 				))}
-				<CoreExperienceItem editorsControls={editorsControls} />
+				<CoreExperienceItem
+					editors={editors}
+					xp={core.xp}
+					updateCrawlerSheet={updateCrawlerSheet}
+				/>
 			</div>
 		</div>
 	);
-};
+});

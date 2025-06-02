@@ -1,4 +1,10 @@
-import { type ChangeEvent, useState } from 'react';
+import {
+	type ChangeEvent,
+	useCallback,
+	useEffect,
+	useRef,
+	useState,
+} from 'react';
 
 import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
 import CogIcon from '@heroicons/react/24/solid/CogIcon';
@@ -20,11 +26,32 @@ export const SectionHeader = ({
 	readonly notes?: {
 		isEditing: boolean;
 		value: string;
-		handleChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+		persistValue: (value: string) => void;
 		toggleEditor: (isEnabled: boolean) => void;
 	};
 }) => {
 	const [showNotes, setShowNotes] = useState(!!notes?.value);
+
+	const [notesDisplay, setNotesDisplay] = useState(notes?.value || '');
+	useEffect(() => {
+		setNotesDisplay(notes?.value || '');
+	}, [notes?.value]);
+
+	const persistTimoutRef = useRef<number>(null);
+	const handleNotesChange = useCallback(
+		({ target: { value } }: ChangeEvent<HTMLTextAreaElement>) => {
+			setNotesDisplay(value);
+
+			if (persistTimoutRef.current) {
+				clearTimeout(persistTimoutRef.current);
+			}
+			persistTimoutRef.current = setTimeout(() => {
+				notes?.persistValue(value);
+				persistTimoutRef.current = null;
+			}, 500);
+		},
+		[notes],
+	);
 
 	return (
 		<div className="section-header border-t mx-2">
@@ -50,7 +77,7 @@ export const SectionHeader = ({
 						<div className="p-2">
 							<textarea
 								autoFocus
-								onChange={notes?.handleChange}
+								onChange={handleNotesChange}
 								onFocus={resizeElement}
 								onKeyDown={(e) => {
 									if (isKeyExit(e, true)) {
@@ -59,7 +86,7 @@ export const SectionHeader = ({
 										resizeElement(e);
 									}
 								}}
-								value={notes?.value}
+								value={notesDisplay}
 							/>
 						</div>
 					) : (
@@ -68,8 +95,8 @@ export const SectionHeader = ({
 								className="w-full min-h-[4rem] p-[1rem] text-left bg-(--black-3)"
 								onClick={() => notes?.toggleEditor(true)}
 							>
-								<p className="whitespace-pre-wrap">
-									{notes?.value || (
+								<p className="overflow-scroll whitespace-pre-wrap">
+									{notesDisplay || (
 										<i className="text-(--gray) select-none">Click to edit</i>
 									)}
 								</p>

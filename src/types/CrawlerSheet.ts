@@ -1,3 +1,5 @@
+import type { DeepPartial } from './DeepPartial';
+
 export interface CrawlerSheet {
 	core: Readonly<{
 		name: string;
@@ -66,3 +68,9 @@ export interface CrawlerSheet {
 		notes: string;
 	}>;
 }
+
+export type CrawlerSheetUpdates = DeepPartial<CrawlerSheet>;
+
+export type UpdateCrawlerSheet = (
+	crawlerSheetUpdates: CrawlerSheetUpdates,
+) => void;

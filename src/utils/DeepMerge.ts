@@ -1,24 +1,18 @@
 import type { DeepPartial } from '@/types/DeepPartial';
 
-export const deepMerge = <T>(prev: T, updates: DeepPartial<T>): T =>
-	_deepMerge(JSON.parse(JSON.stringify(prev)), updates) as T;
+export const deepMerge = <T>(prev: T, updates: DeepPartial<T>): T => {
+	const merged = { ...prev };
 
-const _deepMerge = (
-	prev: Record<string, unknown>,
-	updates: Record<string, unknown>,
-) => {
-	for (const key in prev) {
-		if (Object.prototype.hasOwnProperty.call(updates, key)) {
-			if (prev[key] instanceof Object && updates[key] instanceof Object) {
-				_deepMerge(
-					prev[key] as Record<string, unknown>,
-					updates[key] as Record<string, unknown>,
-				);
-			} else {
-				prev[key] = updates[key];
-			}
+	for (const key in updates) {
+		if (typeof merged[key] === 'object' && !Array.isArray(merged[key])) {
+			merged[key] = deepMerge(
+				merged[key],
+				updates[key] as DeepPartial<(typeof merged)[typeof key]>,
+			);
+		} else {
+			merged[key] = updates[key] as (typeof merged)[typeof key];
 		}
 	}
 
-	return prev;
+	return merged;
 };

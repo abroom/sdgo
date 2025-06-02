@@ -20,28 +20,19 @@
 			gap: 0.25rem;
 
 			border: solid;
-			border-radius: 8px;
-			padding: 0.5rem;
+			border-radius: var(--radius-md);
+			padding: calc(var(--spacing) * 2);
 
 			> :first-child {
 				flex-grow: 1;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				padding: 2px;
 
 				font-size: var(--text-xl);
 				text-align: center;
 
-				p {
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					height: 2rem;
-				}
-
 				input {
-					height: 2rem;
 					text-align: inherit;
 				}
 			}

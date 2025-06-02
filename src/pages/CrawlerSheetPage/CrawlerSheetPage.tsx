@@ -1,20 +1,16 @@
-import './CrawlerSheetPage.css';
-
-import {
-	Core,
-	// Defenses,
-	// Spells,
-	// Stats,
-	// Weapons,
-} from '@/components/CrawlerSheetPage/Core/Core';
+import { Core } from '@/components/CrawlerSheetPage/Core/Core';
+import { Stats } from '@/components/CrawlerSheetPage/Stats/Stats';
 import { CrawlerSheetProvider } from '@/contexts/CrawlerSheetContext/CrawlerSheetProvider';
+
+import './CrawlerSheetPage.css';
 
 export const CrawlerSheetPage = () => {
 	return (
 		<div className="crawler-sheet-page">
 			<CrawlerSheetProvider>
 				<Core />
-				{/* <Stats />
+				<Stats />
+				{/* 
 				<Defenses />
 				<Weapons />
 				<Spells /> */}
