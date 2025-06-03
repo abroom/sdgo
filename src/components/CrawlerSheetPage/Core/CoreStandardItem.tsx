@@ -10,7 +10,7 @@ import type { Editors } from '@/hooks/Editors';
 import type { CrawlerSheet, UpdateCrawlerSheet } from '@/types/CrawlerSheet';
 import { isKeyExit } from '@/utils/IsKeyExit';
 
-import { CoreItem } from './CoreItem';
+import { CoreItemButton } from './CoreItemButton';
 import { standardItemLabelsByKey } from './constants';
 import type { CoreStandardItemKey } from './types';
 
@@ -48,33 +48,29 @@ export const CoreStandardItem = ({
 	}
 
 	return (
-		<button
-			className="flex flex-col"
+		<CoreItemButton
 			disabled={editors.enabled.has(itemKey)}
+			htmlFor={`core.${itemKey}`}
+			label={standardItemLabelsByKey[itemKey]}
 			onClick={() => editors.toggle([itemKey])}
 		>
-			<CoreItem
-				htmlFor={`core.${itemKey}`}
-				label={standardItemLabelsByKey[itemKey]}
-			>
-				{editors.enabled.has(itemKey) ? (
-					<input
-						id={`core.${itemKey}`}
-						autoFocus
-						className="text-center"
-						onChange={handleChange}
-						onKeyDown={(e) => {
-							if (isKeyExit(e)) {
-								editors.toggle([itemKey]);
-							}
-						}}
-						type="text"
-						value={coreValue}
-					/>
-				) : (
-					<p className="flex-grow py-1">{coreValue}</p>
-				)}
-			</CoreItem>
-		</button>
+			{editors.enabled.has(itemKey) ? (
+				<input
+					id={`core.${itemKey}`}
+					autoFocus
+					className="text-center"
+					onChange={handleChange}
+					onKeyDown={(e) => {
+						if (isKeyExit(e)) {
+							editors.toggle([itemKey]);
+						}
+					}}
+					type="text"
+					value={coreValue}
+				/>
+			) : (
+				<p className="flex-grow py-1">{coreValue}</p>
+			)}
+		</CoreItemButton>
 	);
 };

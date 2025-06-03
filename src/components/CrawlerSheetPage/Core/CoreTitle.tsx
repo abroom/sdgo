@@ -30,10 +30,7 @@ export const CoreTitle = memo(function CoreTitle({
 		setName(coreName);
 	}, [coreName]);
 
-	const isNameEditorEnabled = useMemo(
-		() => editors.enabled.has('name'),
-		[editors],
-	);
+	const editorEnabled = useMemo(() => editors.enabled.has('name'), [editors]);
 
 	const persistTimeoutRef = useRef<number>(undefined);
 	const handleChange = useCallback(
@@ -50,18 +47,18 @@ export const CoreTitle = memo(function CoreTitle({
 
 	const nameInputRef = useRef<HTMLInputElement>(null);
 	useEffect(() => {
-		if (isNameEditorEnabled && nameInputRef.current) {
+		if (editorEnabled && nameInputRef.current) {
 			nameInputRef.current.focus();
 		}
-	}, [isNameEditorEnabled, nameInputRef]);
+	}, [editorEnabled, nameInputRef]);
 
 	return (
 		<button
 			className="border-none w-full p-4 text-5xl"
-			disabled={isNameEditorEnabled}
+			disabled={editorEnabled}
 			onClick={toggleContent}
 		>
-			{isNameEditorEnabled ? (
+			{editorEnabled ? (
 				<input
 					className="h-15 text-center"
 					type="text"

@@ -9,7 +9,7 @@ import {
 import type { Editors } from '@/hooks/Editors';
 import type { CrawlerSheet, UpdateCrawlerSheet } from '@/types/CrawlerSheet';
 import { isKeyExit } from '@/utils/IsKeyExit';
-import { CoreItem } from './CoreItem';
+import { CoreItemButton } from './CoreItemButton';
 
 export const CoreExperienceItem = ({
 	xp,
@@ -53,68 +53,59 @@ export const CoreExperienceItem = ({
 		[updateCrawlerSheet],
 	);
 
-	if (
-		!xpCurrent &&
-		!xpRequired &&
-		!editors.enabled.has('xp.current') &&
-		!editors.enabled.has('xp.required')
-	) {
+	if (!xpCurrent && !xpRequired && !editors.enabled.has('xp')) {
 		return null;
 	}
 
 	return (
-		<div className="border rounded-md flex flex-col">
-			<CoreItem label={'Experience'}>
-				<div className="flex-grow flex gap-[0.5rem] items-center justify-center">
-					{editors.enabled.has('xp.current') ? (
+		<CoreItemButton
+			disabled={editors.enabled.has('xp')}
+			label={'Experience'}
+			onClick={() => editors.toggle(['xp'])}
+		>
+			<div className="flex-grow max-w-full flex gap-[0.5rem] items-center justify-center">
+				<div className="flex-grow border-x-0 border-t-0 max-w-[calc((100%-1.5rem)/2)]">
+					{editors.enabled.has('xp') ? (
 						<input
 							autoFocus
-							className="flex-grow px-2 h-8 max-w-[calc((100%-1.5rem)/2)] text-right"
+							className="flex-grow px-2 h-8 text-right"
 							onChange={handleCurrentChange}
 							onKeyDown={(e) => {
 								if (isKeyExit(e)) {
-									editors.toggle(['xp.current']);
+									editors.toggle(['xp']);
 								}
 							}}
 							type="text"
 							value={xpCurrent}
 						/>
 					) : (
-						<button
-							className="flex-grow  border-none max-w-[calc((100%-1.5rem)/2)]"
-							onClick={() => editors.toggle(['xp.current'])}
-						>
-							<p className="px-2 h-8 min-h-fit text-right leading-[2rem] overflow-auto">
-								{xpCurrent}
-							</p>
-						</button>
+						<p className="flex-grow px-2 h-8 min-h-fit text-right leading-[2rem] overflow-auto">
+							{xpCurrent}
+						</p>
 					)}
-					<p className="px-0 w-[0.5rem] text-center">/</p>
-					{editors.enabled.has('xp.required') ? (
+				</div>
+				<p className="px-0 w-[0.5rem] text-center">/</p>
+				<div className="flex-grow border-x-0 border-t-0 max-w-[calc((100%-1.5rem)/2)]">
+					{editors.enabled.has('xp') ? (
 						<input
 							autoFocus
-							className="flex-grow px-2 h-8 max-w-[calc((100%-1.5rem)/2)] text-left"
+							className="flex-grow px-2 h-8 text-left"
 							onChange={handleRequiredChange}
 							onKeyDown={(e) => {
 								if (isKeyExit(e)) {
-									editors.toggle(['xp.required']);
+									editors.toggle(['xp']);
 								}
 							}}
 							type="text"
 							value={xpRequired}
 						/>
 					) : (
-						<button
-							className="flex-grow  border-none max-w-[calc((100%-1.5rem)/2)]"
-							onClick={() => editors.toggle(['xp.required'])}
-						>
-							<p className="px-2 h-8 min-h-fit text-left leading-[2rem] overflow-auto">
-								{xpRequired}
-							</p>
-						</button>
+						<p className="flex-grow px-2 h-8 min-h-fit text-left leading-[2rem] overflow-auto">
+							{xpRequired}
+						</p>
 					)}
 				</div>
-			</CoreItem>
-		</div>
+			</div>
+		</CoreItemButton>
 	);
 };

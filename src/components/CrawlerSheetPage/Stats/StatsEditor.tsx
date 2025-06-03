@@ -28,7 +28,7 @@ export const StatsEditor = ({
 			))}
 			<button
 				className={clsx(
-					'flex-grow p-2',
+					'mb-2 col-span-full p-2',
 					'flex items-center justify-around',
 					'text-2xl font-bold',
 				)}

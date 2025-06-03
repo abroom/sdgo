@@ -24,8 +24,6 @@ export const StatsEditorRow = memo(function StatsEditorRow({
 	readonly editors: Editors<CrawlerSheet['stats']>;
 	readonly updateCrawlerSheet: UpdateCrawlerSheet;
 }) {
-	console.log('StatsEditorRow render', { data, index, editors });
-
 	const [statName, setStatName] = useState(data[index].name);
 	useEffect(() => {
 		setStatName(data[index].name);
@@ -50,7 +48,7 @@ export const StatsEditorRow = memo(function StatsEditorRow({
 
 	return (
 		<div>
-			<span className="flex gap-2 items-center justify-center p-2">
+			<span className="mb-2 p-2 flex gap-2 items-center justify-center">
 				<input
 					className="text-xl h-[2.6rem] border rounded px-2"
 					type="text"
@@ -64,7 +62,7 @@ export const StatsEditorRow = memo(function StatsEditorRow({
 					}}
 				/>
 				<button
-					className="p-2 text-red-500"
+					className="border-red-950 outline-red-300 shadow-red-300 p-2 bg-red-950 text-red-500"
 					onClick={() => {
 						clearTimeout(persistTimeoutRef.current);
 						updateCrawlerSheet({

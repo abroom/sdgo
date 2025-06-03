@@ -45,7 +45,7 @@
 	button,
 	input,
 	textarea {
-		@apply border rounded-md
+		@apply border border-(--color-primary-2) rounded-md
 			not-disabled:hover:outline-1 hover:outline-(--color-secondary)
 			not-disabled:focus-visible:outline-1 focus-visible:outline-(--color-secondary)
 			not-disabled:hover:shadow-(--highlight)

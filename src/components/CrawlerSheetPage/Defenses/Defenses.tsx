@@ -1,189 +1,39 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
-import { SectionHeader } from '../SectionHeader';
-import type { CharacterSheetSectionProps } from '../../../types/CrawlerSheet';
+import { CrawlerSheetContext } from '@/contexts/CrawlerSheetContext/CrawlerSheetContext';
+import { useEditors } from '@/hooks/Editors';
+import type { CrawlerSheet } from '@/types/CrawlerSheet';
 
-export const Defenses = ({
-	characterSheet: {
-		defenses: { ac, hp, notes },
-	},
-	setCharacterSheet,
-}: CharacterSheetSectionProps) => {
+import { Section } from '../Section';
+import { DefensesContent } from './DefensesContent';
+
+export const Defenses = () => {
 	const [isContentVisible, setIsContentVisible] = useState(true);
-	const [editors, setEditors] = useState<Set<string>>(new Set());
+
+	const {
+		crawlerSheet: { defenses },
+		updateCrawlerSheet,
+	} = useContext(CrawlerSheetContext);
+
+	const editors = useEditors<CrawlerSheet['defenses']>();
+
+	console.log('Defenses render', { defenses, editors });
 
 	return (
-		<section className="defenses">
+		<Section>
 			<button
-				className="w-full"
+				className="border-none w-full p-4 text-5xl"
 				onClick={() => setIsContentVisible((prev) => !prev)}
 			>
 				<h2>Defenses</h2>
 			</button>
 			{isContentVisible && (
-				<>
-					<SectionHeader
-						notes={notes}
-						handleNotesChange={({ target: { value } }) =>
-							setCharacterSheet((prev) => ({
-								...prev,
-								defenses: {
-									...prev.defenses,
-									notes: value,
-								},
-							}))
-						}
-						isEditing={editors.size > 0}
-						handleSettingsClick={() => {
-							setEditors((prev) => {
-								return prev.size
-									? new Set()
-									: new Set(['ac', 'hp.current', 'hp.max']);
-							});
-						}}
-					/>
-					<div className="values md:flex-row">
-						<div className="h-[4.5rem] border rounded-[8px] flex-grow md:max-w-1/2 flex">
-							<div className="border-r border-dotted min-w-[7rem] p-[0.5rem]">
-								<p className="text-2xl text-center">AC</p>
-								<p className="text-sm text-center text-(--grey)">Armor Class</p>
-							</div>
-							<div className="flex-grow p-[0.5rem]">
-								{editors.has('ac') ? (
-									<input
-										className="h-full w-full text-center text-2xl"
-										type="text"
-										value={ac}
-										autoFocus
-										onChange={({ target: { value } }) =>
-											setCharacterSheet((prev) => ({
-												...prev,
-												defenses: {
-													...prev.defenses,
-													ac: value,
-												},
-											}))
-										}
-										onKeyDown={(e) => {
-											if (['Enter', 'Escape'].includes(e.key)) {
-												setEditors((prev) => {
-													prev.delete('ac');
-													return new Set(prev);
-												});
-											}
-										}}
-									/>
-								) : (
-									<button
-										className="h-full w-full text-4xl"
-										onClick={() => {
-											setEditors((prev) => {
-												prev.add('ac');
-												return new Set(prev);
-											});
-										}}
-									>
-										{ac}
-									</button>
-								)}
-							</div>
-						</div>
-						<div className="h-[4.5rem] border rounded-[8px] flex-grow md:max-w-1/2 flex">
-							<div className="border-r border-dotted min-w-[7rem] p-[0.5rem]">
-								<p className="text-2xl text-center">HP</p>
-								<p className="text-sm text-center text-(--grey)">Hit Points</p>
-							</div>
-							<div className="flex-grow flex justify-around items-center gap-[0.25rem]">
-								<div className="flex flex-grow h-full max-w-[calc((100%-1.5rem)/2)] p-[0.5rem]">
-									{editors.has('hp.current') ? (
-										<input
-											className="h-full flex-grow text-center text-2xl"
-											type="text"
-											value={hp.current}
-											autoFocus
-											onChange={({ target: { value } }) =>
-												setCharacterSheet((prev) => ({
-													...prev,
-													defenses: {
-														...prev.defenses,
-														hp: {
-															...prev.defenses.hp,
-															current: value,
-														},
-													},
-												}))
-											}
-											onKeyDown={(e) => {
-												if (['Enter', 'Escape'].includes(e.key)) {
-													setEditors((prev) => {
-														prev.delete('hp.current');
-														return new Set(prev);
-													});
-												}
-											}}
-										/>
-									) : (
-										<button
-											className="flex-grow text-4xl"
-											onClick={() => {
-												setEditors((prev) => {
-													prev.add('hp.current');
-													return new Set(prev);
-												});
-											}}
-										>
-											{hp.current}
-										</button>
-									)}
-								</div>
-								<p className="text-center text-4xl w-[1rem]">/</p>
-								<div className="flex flex-grow h-full max-w-[calc((100%-1.5rem)/2)] p-[0.5rem]">
-									{editors.has('hp.max') ? (
-										<input
-											className="h-full flex-grow text-center text-2xl"
-											type="text"
-											value={hp.max}
-											autoFocus
-											onChange={({ target: { value } }) =>
-												setCharacterSheet((prev) => ({
-													...prev,
-													defenses: {
-														...prev.defenses,
-														hp: {
-															...prev.defenses.hp,
-															max: value,
-														},
-													},
-												}))
-											}
-											onKeyDown={(e) => {
-												if (['Enter', 'Escape'].includes(e.key)) {
-													setEditors((prev) => {
-														prev.delete('hp.max');
-														return new Set(prev);
-													});
-												}
-											}}
-										/>
-									) : (
-										<button
-											className="flex-grow text-4xl"
-											onClick={() => {
-												setEditors((prev) => {
-													prev.add('hp.max');
-													return new Set(prev);
-												});
-											}}
-										>
-											{hp.max}
-										</button>
-									)}
-								</div>
-							</div>
-						</div>
-					</div>
-				</>
+				<DefensesContent
+					defenses={defenses}
+					editors={editors}
+					updateCrawlerSheet={updateCrawlerSheet}
+				/>
 			)}
-		</section>
+		</Section>
 	);
 };

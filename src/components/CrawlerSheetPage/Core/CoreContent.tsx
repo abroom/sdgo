@@ -12,8 +12,7 @@ import { CoreStandardItem } from './CoreStandardItem';
 const headerEnableEditorKeys: DeepKeyOf<CrawlerSheet['core']>[] = [
 	'name',
 	...standardItemKeys,
-	'xp.current',
-	'xp.required',
+	'xp',
 ];
 
 export const CoreContent = memo(function CoreContent({

@@ -25,10 +25,10 @@ export const StatsRow = ({
 
 	const stat = data[index];
 
-	const { editorKey, editing } = useMemo(() => {
+	const { editorKey, editorEnabled } = useMemo(() => {
 		const editorKey: `data.${number}` = `data.${index}`;
-		const editing = editors.enabled.has(editorKey);
-		return { editorKey, editing };
+		const editorEnabled = editors.enabled.has(editorKey);
+		return { editorKey, editorEnabled };
 	}, [editors.enabled, index]);
 
 	const [score, setScore] = useState(stat.score);
@@ -79,16 +79,16 @@ export const StatsRow = ({
 	return (
 		<button
 			className="p-2 grid grid-cols-3 gap-2 text-center"
-			disabled={editing}
+			disabled={editorEnabled}
 			onClick={() => {
 				editors.toggle([editorKey]);
 			}}
 		>
 			<span className="flex flex-col items-center justify-center">
 				<h3 className="uppercase">{stat.name.substring(0, 3)}</h3>
-				<label>{stat.name}</label>
+				<label className="max-w-full overflow-auto">{stat.name}</label>
 			</span>
-			{editing ? (
+			{editorEnabled ? (
 				<>
 					<input
 						autoFocus
@@ -119,11 +119,11 @@ export const StatsRow = ({
 			) : (
 				<>
 					<div className="flex flex-col items-center justify-center">
-						<h3>{score}</h3>
+						<p className="max-w-full text-3xl overflow-auto">{score}</p>
 						<label>Score</label>
 					</div>
 					<div className="flex flex-col items-center justify-center">
-						<h3>{mod}</h3>
+						<p className="max-w-full text-3xl overflow-auto">{mod}</p>
 						<label>Mod</label>
 					</div>
 				</>
