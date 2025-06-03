@@ -28,8 +28,6 @@ export const CoreExperienceItem = ({
 	}, [xp]);
 
 	const persistCurrentTimeoutRef = useRef<number>(undefined);
-	const persistRequiredTimeoutRef = useRef<number>(undefined);
-
 	const handleCurrentChange = useCallback(
 		({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
 			setXpCurrent(value);
@@ -41,6 +39,8 @@ export const CoreExperienceItem = ({
 		},
 		[updateCrawlerSheet],
 	);
+
+	const persistRequiredTimeoutRef = useRef<number>(undefined);
 	const handleRequiredChange = useCallback(
 		({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
 			setXpRequired(value);
@@ -81,7 +81,7 @@ export const CoreExperienceItem = ({
 						/>
 					) : (
 						<button
-							className="flex-grow max-w-[calc((100%-1.5rem)/2)]"
+							className="flex-grow  border-none max-w-[calc((100%-1.5rem)/2)]"
 							onClick={() => editors.toggle(['xp.current'])}
 						>
 							<p className="px-2 h-8 min-h-fit text-right leading-[2rem] overflow-auto">
@@ -105,7 +105,7 @@ export const CoreExperienceItem = ({
 						/>
 					) : (
 						<button
-							className="flex-grow max-w-[calc((100%-1.5rem)/2)]"
+							className="flex-grow  border-none max-w-[calc((100%-1.5rem)/2)]"
 							onClick={() => editors.toggle(['xp.required'])}
 						>
 							<p className="px-2 h-8 min-h-fit text-left leading-[2rem] overflow-auto">

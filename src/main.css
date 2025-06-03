@@ -24,6 +24,24 @@
 		@apply h-full w-full;
 	}
 
+	/* Headers */
+	h1 {
+		@apply text-5xl text-center;
+	}
+
+	h2 {
+		@apply text-4xl text-center;
+	}
+
+	h3 {
+		@apply text-3xl text-center;
+	}
+
+	/* Interactives */
+	label {
+		@apply text-sm text-center text-(--color-primary-3);
+	}
+
 	button,
 	input,
 	textarea {

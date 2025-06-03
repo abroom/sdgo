@@ -53,9 +53,13 @@ export const CoreStandardItem = ({
 			disabled={editors.enabled.has(itemKey)}
 			onClick={() => editors.toggle([itemKey])}
 		>
-			<CoreItem label={standardItemLabelsByKey[itemKey]}>
+			<CoreItem
+				htmlFor={`core.${itemKey}`}
+				label={standardItemLabelsByKey[itemKey]}
+			>
 				{editors.enabled.has(itemKey) ? (
 					<input
+						id={`core.${itemKey}`}
 						autoFocus
 						className="text-center"
 						onChange={handleChange}

@@ -1,3 +1,4 @@
+import clsx from 'clsx/lite';
 import PlusCircleIcon from '@heroicons/react/24/solid/PlusCircleIcon';
 
 import type { Editors } from '@/hooks/Editors';
@@ -26,7 +27,11 @@ export const StatsEditor = ({
 				/>
 			))}
 			<button
-				className="flex gap-2 size-fit p-2 border rounded self-center"
+				className={clsx(
+					'flex-grow p-2',
+					'flex items-center justify-around',
+					'text-2xl font-bold',
+				)}
 				onClick={() => {
 					updateCrawlerSheet({
 						stats: {
@@ -35,8 +40,9 @@ export const StatsEditor = ({
 					});
 				}}
 			>
-				<PlusCircleIcon width={24} />
+				<PlusCircleIcon width={36} />
 				Add Stat
+				<PlusCircleIcon width={36} />
 			</button>
 		</>
 	);

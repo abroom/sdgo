@@ -49,8 +49,8 @@ export const StatsEditorRow = memo(function StatsEditorRow({
 	);
 
 	return (
-		<div className="stats-item">
-			<span className="col-span-full flex flex-row gap-2 items-center justify-center p-2">
+		<div>
+			<span className="flex gap-2 items-center justify-center p-2">
 				<input
 					className="text-xl h-[2.6rem] border rounded px-2"
 					type="text"
@@ -64,7 +64,7 @@ export const StatsEditorRow = memo(function StatsEditorRow({
 					}}
 				/>
 				<button
-					className="text-red-500 p-2"
+					className="p-2 text-red-500"
 					onClick={() => {
 						clearTimeout(persistTimeoutRef.current);
 						updateCrawlerSheet({

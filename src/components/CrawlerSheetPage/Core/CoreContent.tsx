@@ -48,7 +48,7 @@ export const CoreContent = memo(function CoreContent({
 					},
 				}}
 			/>
-			<div className="my-2 p-2 grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-2 justify-around">
+			<div className="m-2 p-2 grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-4 justify-around">
 				{standardItemKeys.map((itemKey) => (
 					<CoreStandardItem
 						key={itemKey}

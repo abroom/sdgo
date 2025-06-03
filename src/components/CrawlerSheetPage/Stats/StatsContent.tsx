@@ -5,6 +5,7 @@ import type { CrawlerSheet, UpdateCrawlerSheet } from '@/types/CrawlerSheet';
 
 import { SectionHeader } from '../SectionHeader';
 import { StatsEditor } from './StatsEditor';
+import { StatsRow } from './StatsRow';
 
 export const StatsContent = memo(function StatsContent({
 	stats,
@@ -16,7 +17,7 @@ export const StatsContent = memo(function StatsContent({
 	readonly updateCrawlerSheet: UpdateCrawlerSheet;
 }) {
 	return (
-		<div className="content stats-content">
+		<div>
 			<SectionHeader
 				edit={{
 					isToggled: editors.enabled.size > 0,
@@ -38,7 +39,7 @@ export const StatsContent = memo(function StatsContent({
 					},
 				}}
 			/>
-			<div className="values stats-items">
+			<div className="m-4 flex flex-col gap-4">
 				{editors.enabled.has('data') ? (
 					<StatsEditor
 						data={stats.data}
@@ -46,7 +47,15 @@ export const StatsContent = memo(function StatsContent({
 						updateCrawlerSheet={updateCrawlerSheet}
 					/>
 				) : (
-					<pre>TODO StatsList</pre>
+					stats.data.map((_, index) => (
+						<StatsRow
+							key={index}
+							data={stats.data}
+							index={index}
+							editors={editors}
+							updateCrawlerSheet={updateCrawlerSheet}
+						/>
+					))
 				)}
 			</div>
 		</div>

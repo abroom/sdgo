@@ -7,8 +7,6 @@ import type { CrawlerSheet } from '@/types/CrawlerSheet';
 import { Section } from '../Section';
 import { StatsContent } from './StatsContent';
 
-import './Stats.css';
-
 export const Stats = () => {
 	const [isContentVisible, setIsContentVisible] = useState(true);
 
@@ -24,7 +22,7 @@ export const Stats = () => {
 	return (
 		<Section>
 			<button
-				className="title"
+				className="border-none w-full p-4 text-5xl"
 				onClick={() => setIsContentVisible((prev) => !prev)}
 			>
 				<h2>Stats</h2>

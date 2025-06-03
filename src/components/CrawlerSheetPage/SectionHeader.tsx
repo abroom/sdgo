@@ -86,7 +86,7 @@ export const SectionHeader = ({
 						/>
 					) : (
 						<button
-							className="w-full min-h-12 p-2 text-left bg-(--color-primary-2)"
+							className="border-none w-full min-h-12 p-2 text-left bg-(--color-primary-2)"
 							onClick={() => notes?.toggleEditor(true)}
 						>
 							<p className="min-h-12 px-2 overflow-scroll whitespace-pre-wrap">
