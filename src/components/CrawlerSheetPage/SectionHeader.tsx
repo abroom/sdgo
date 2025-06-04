@@ -51,7 +51,7 @@ export const SectionHeader = ({
 	);
 
 	return (
-		<div className="mx-2 border-t border-b">
+		<div className="mx-2 border-t border-b border-(--color-primary-2)">
 			<div className="p-2 flex gap-2 justify-end">
 				{notes ? (
 					<button

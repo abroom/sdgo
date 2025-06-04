@@ -35,9 +35,9 @@ export interface CrawlerSheet {
 		notes: string;
 	}>;
 	spells: Readonly<{
-		data: readonly Readonly<{
-			tier: string;
-			spells: readonly Readonly<{
+		tiers: readonly Readonly<{
+			name: string;
+			data: readonly Readonly<{
 				name: string;
 				forgotten: boolean;
 				range: string;

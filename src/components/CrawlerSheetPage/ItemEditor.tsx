@@ -12,11 +12,13 @@ import TrashIcon from '@heroicons/react/24/solid/TrashIcon';
 import { isKeyExit } from '@/utils/IsKeyExit';
 
 export const ItemEditor = memo(function ItemEditor({
+	placeholder,
 	value,
 	persist,
 	remove,
 	toggle,
 }: {
+	readonly placeholder: string;
 	readonly value: string;
 	readonly persist: (value: string) => void;
 	readonly remove: () => void;
@@ -46,8 +48,8 @@ export const ItemEditor = memo(function ItemEditor({
 				<input
 					className="text-xl h-[2.6rem] border rounded px-2"
 					type="text"
+					placeholder={placeholder}
 					value={valueDisplay}
-					placeholder="Weapon Name"
 					onChange={handleChange}
 					onKeyDown={(e) => {
 						if (isKeyExit(e)) {

@@ -19,16 +19,16 @@ export const DefensesContent = memo(function DefensesContent({
 	return (
 		<div>
 			<SectionHeader
-				// edit={{
-				// 	isToggled: editors.enabled.size > 0,
-				// 	handleClick: () => {
-				// 		if (editors.enabled.size > 0) {
-				// 			editors.disableAll();
-				// 		} else {
-				// 			editors.toggle(['data']);
-				// 		}
-				// 	},
-				// }}
+				edit={{
+					isToggled: editors.enabled.size > 0,
+					handleClick: () => {
+						if (editors.enabled.size > 0) {
+							editors.disableAll();
+						} else {
+							editors.toggle(['ac', 'hp']);
+						}
+					},
+				}}
 				notes={{
 					isEditing: editors.enabled.has('notes'),
 					value: defenses.notes,

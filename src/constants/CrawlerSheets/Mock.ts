@@ -52,10 +52,10 @@ export const CRAWLER_SHEET__MOCK: CrawlerSheet = {
 		notes: 'Carries weapons suitable for both melee and ranged combat.',
 	},
 	spells: {
-		data: [
+		tiers: [
 			{
-				tier: '1',
-				spells: [
+				name: '1',
+				data: [
 					{
 						name: "Hunter's Mark",
 						forgotten: false,

@@ -18,6 +18,7 @@ export const StatsEditor = ({
 			{data.map((_, i) => (
 				<ItemEditor
 					key={i}
+					placeholder={`Stat ${i + 1}`}
 					value={data[i].name}
 					persist={(value) => {
 						updateCrawlerSheet({

@@ -18,6 +18,7 @@ export const WeaponsEditor = ({
 			{data.map((_, i) => (
 				<ItemEditor
 					key={i}
+					placeholder={`Weapon ${i + 1}`}
 					value={data[i].name}
 					persist={(value) => {
 						updateCrawlerSheet({

@@ -85,8 +85,12 @@ export const StatsItem = ({
 			}}
 		>
 			<span className="flex flex-col items-center justify-center">
-				<h3 className="uppercase">{stat.name.substring(0, 3)}</h3>
-				<label className="max-w-full overflow-auto">{stat.name}</label>
+				<h3 className="uppercase">
+					{stat.name.substring(0, 3) || `S${index + 1}`}
+				</h3>
+				<label className="max-w-full overflow-auto">
+					{stat.name || `Stat ${index + 1}`}
+				</label>
 			</span>
 			{editorEnabled ? (
 				<>

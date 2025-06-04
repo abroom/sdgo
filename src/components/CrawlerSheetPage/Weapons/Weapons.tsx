@@ -1,7 +1,9 @@
+import { useContext, useState } from 'react';
+
 import { CrawlerSheetContext } from '@/contexts/CrawlerSheetContext/CrawlerSheetContext';
 import { useEditors } from '@/hooks/Editors';
 import type { CrawlerSheet } from '@/types/CrawlerSheet';
-import { useContext, useState } from 'react';
+
 import { Section } from '../Section';
 import { WeaponsContent } from './WeaponsContent';
 
