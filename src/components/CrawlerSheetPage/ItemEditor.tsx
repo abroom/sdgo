@@ -9,41 +9,35 @@ import {
 
 import TrashIcon from '@heroicons/react/24/solid/TrashIcon';
 
-import type { Editors } from '@/hooks/Editors';
-import type { CrawlerSheet, UpdateCrawlerSheet } from '@/types/CrawlerSheet';
 import { isKeyExit } from '@/utils/IsKeyExit';
 
-export const StatsEditorRow = memo(function StatsEditorRow({
-	data,
-	index,
-	editors,
-	updateCrawlerSheet,
+export const ItemEditor = memo(function ItemEditor({
+	value,
+	persist,
+	remove,
+	toggle,
 }: {
-	readonly data: CrawlerSheet['stats']['data'];
-	readonly index: number;
-	readonly editors: Editors<CrawlerSheet['stats']>;
-	readonly updateCrawlerSheet: UpdateCrawlerSheet;
+	readonly value: string;
+	readonly persist: (value: string) => void;
+	readonly remove: () => void;
+	readonly toggle: () => void;
 }) {
-	const [statName, setStatName] = useState(data[index].name);
+	const [valueDisplay, setValueDisplay] = useState(value);
 	useEffect(() => {
-		setStatName(data[index].name);
-	}, [data, index]);
+		setValueDisplay(value);
+	}, [value]);
 
 	const persistTimeoutRef = useRef<number>(undefined);
 	const handleChange = useCallback(
 		({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
-			setStatName(value);
+			setValueDisplay(value);
 			clearTimeout(persistTimeoutRef.current);
 			persistTimeoutRef.current = setTimeout(() => {
-				updateCrawlerSheet({
-					stats: {
-						data: data.map((s, i) => (i === index ? { ...s, name: value } : s)),
-					},
-				});
+				persist(value);
 				persistTimeoutRef.current = undefined;
 			}, 500);
 		},
-		[data, index, updateCrawlerSheet],
+		[persist],
 	);
 
 	return (
@@ -52,12 +46,12 @@ export const StatsEditorRow = memo(function StatsEditorRow({
 				<input
 					className="text-xl h-[2.6rem] border rounded px-2"
 					type="text"
-					value={statName}
-					placeholder="Stat Name"
+					value={valueDisplay}
+					placeholder="Weapon Name"
 					onChange={handleChange}
 					onKeyDown={(e) => {
 						if (isKeyExit(e)) {
-							editors.toggle([`data`]);
+							toggle();
 						}
 					}}
 				/>
@@ -65,11 +59,7 @@ export const StatsEditorRow = memo(function StatsEditorRow({
 					className="border-red-950 outline-red-300 shadow-red-300 p-2 bg-red-950 text-red-500"
 					onClick={() => {
 						clearTimeout(persistTimeoutRef.current);
-						updateCrawlerSheet({
-							stats: {
-								data: data.filter((_, i) => i !== index),
-							},
-						});
+						remove();
 					}}
 				>
 					<TrashIcon width={24} />

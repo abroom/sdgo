@@ -4,16 +4,16 @@ import type { Editors } from '@/hooks/Editors';
 import type { CrawlerSheet, UpdateCrawlerSheet } from '@/types/CrawlerSheet';
 
 import { SectionHeader } from '../SectionHeader';
-import { StatsEditor } from './StatsEditor';
-import { StatsItem } from './StatsItem';
+import { WeaponsEditor } from './WeaponsEditor';
+import { WeaponsItem } from './WeaponsItem';
 
-export const StatsContent = memo(function StatsContent({
-	stats,
+export const WeaponsContent = memo(function WepaonsContent({
+	weapons,
 	editors,
 	updateCrawlerSheet,
 }: {
-	readonly stats: CrawlerSheet['stats'];
-	readonly editors: Editors<CrawlerSheet['stats']>;
+	readonly weapons: CrawlerSheet['weapons'];
+	readonly editors: Editors<CrawlerSheet['weapons']>;
 	readonly updateCrawlerSheet: UpdateCrawlerSheet;
 }) {
 	return (
@@ -31,26 +31,26 @@ export const StatsContent = memo(function StatsContent({
 				}}
 				notes={{
 					isEditing: editors.enabled.has('notes'),
-					value: stats.notes,
+					value: weapons.notes,
 					persistValue: (value) =>
-						updateCrawlerSheet({ stats: { notes: value } }),
+						updateCrawlerSheet({ weapons: { notes: value } }),
 					toggleEditor: (isEnabled) => {
 						editors.toggle(['notes'], isEnabled);
 					},
 				}}
 			/>
-			<div className="m-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+			<div className="m-4 grid lg:grid-cols-2 gap-4">
 				{editors.enabled.has('data') ? (
-					<StatsEditor
-						data={stats.data}
+					<WeaponsEditor
+						data={weapons.data}
 						editors={editors}
 						updateCrawlerSheet={updateCrawlerSheet}
 					/>
 				) : (
-					stats.data.map((_, index) => (
-						<StatsItem
+					weapons.data.map((_, index) => (
+						<WeaponsItem
 							key={index}
-							data={stats.data}
+							data={weapons.data}
 							index={index}
 							editors={editors}
 							updateCrawlerSheet={updateCrawlerSheet}

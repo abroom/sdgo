@@ -1,6 +1,7 @@
 import { Core } from '@/components/CrawlerSheetPage/Core/Core';
 import { Defenses } from '@/components/CrawlerSheetPage/Defenses/Defenses';
 import { Stats } from '@/components/CrawlerSheetPage/Stats/Stats';
+import { Weapons } from '@/components/CrawlerSheetPage/Weapons/Weapons';
 import { CrawlerSheetProvider } from '@/contexts/CrawlerSheetContext/CrawlerSheetProvider';
 
 export const CrawlerSheetPage = () => {
@@ -10,8 +11,8 @@ export const CrawlerSheetPage = () => {
 				<Core />
 				<Stats />
 				<Defenses />
-				{/* 
 				<Weapons />
+				{/* 
 				<Spells /> */}
 				{/* Add other sections like Spells, Talents, Gear as needed */}
 				{/* <Talents /> */}

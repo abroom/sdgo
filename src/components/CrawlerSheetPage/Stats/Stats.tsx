@@ -8,12 +8,12 @@ import { Section } from '../Section';
 import { StatsContent } from './StatsContent';
 
 export const Stats = () => {
-	const [isContentVisible, setIsContentVisible] = useState(true);
-
 	const {
 		crawlerSheet: { stats },
 		updateCrawlerSheet,
 	} = useContext(CrawlerSheetContext);
+
+	const [isContentVisible, setIsContentVisible] = useState(true);
 
 	const editors = useEditors<CrawlerSheet['stats']>();
 
@@ -22,7 +22,7 @@ export const Stats = () => {
 	return (
 		<Section>
 			<button
-				className="border-none w-full p-4 text-5xl"
+				className="border-none w-full p-4"
 				onClick={() => setIsContentVisible((prev) => !prev)}
 			>
 				<h2>Stats</h2>

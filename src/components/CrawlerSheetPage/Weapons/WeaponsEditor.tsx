@@ -1,16 +1,16 @@
 import type { Editors } from '@/hooks/Editors';
 import type { CrawlerSheet, UpdateCrawlerSheet } from '@/types/CrawlerSheet';
 
-import { AddItemButton } from '../AddItemButton';
 import { ItemEditor } from '../ItemEditor';
+import { AddItemButton } from '../AddItemButton';
 
-export const StatsEditor = ({
+export const WeaponsEditor = ({
 	data,
 	editors,
 	updateCrawlerSheet,
 }: {
-	readonly data: CrawlerSheet['stats']['data'];
-	readonly editors: Editors<CrawlerSheet['stats']>;
+	readonly data: CrawlerSheet['weapons']['data'];
+	readonly editors: Editors<CrawlerSheet['weapons']>;
 	readonly updateCrawlerSheet: UpdateCrawlerSheet;
 }) => {
 	return (
@@ -21,16 +21,16 @@ export const StatsEditor = ({
 					value={data[i].name}
 					persist={(value) => {
 						updateCrawlerSheet({
-							stats: {
-								data: data.map((s, idx) =>
-									idx === i ? { ...s, name: value } : s,
+							weapons: {
+								data: data.map((w, idx) =>
+									idx === i ? { ...w, name: value } : w,
 								),
 							},
 						});
 					}}
 					remove={() => {
 						updateCrawlerSheet({
-							stats: {
+							weapons: {
 								data: data.filter((_, idx) => idx !== i),
 							},
 						});
@@ -38,18 +38,19 @@ export const StatsEditor = ({
 					toggle={() => editors.toggle(['data'])}
 				/>
 			))}
-			{editors.enabled.has('data') && (
-				<AddItemButton
-					label="Add Stat"
-					addItem={() => {
-						updateCrawlerSheet({
-							stats: {
-								data: [...data, { name: '', score: '', mod: '' }],
-							},
-						});
-					}}
-				/>
-			)}
+			<AddItemButton
+				label="Add Weapon"
+				addItem={() => {
+					updateCrawlerSheet({
+						weapons: {
+							data: [
+								...data,
+								{ name: '', type: '', damage: '', range: '', notes: '' },
+							],
+						},
+					});
+				}}
+			/>
 		</>
 	);
 };

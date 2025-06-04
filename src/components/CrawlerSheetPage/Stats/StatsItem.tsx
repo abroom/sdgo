@@ -10,7 +10,7 @@ import {
 	type ChangeEvent,
 } from 'react';
 
-export const StatsRow = ({
+export const StatsItem = ({
 	data,
 	index,
 	editors,
@@ -21,7 +21,7 @@ export const StatsRow = ({
 	readonly editors: Editors<CrawlerSheet['stats']>;
 	readonly updateCrawlerSheet: UpdateCrawlerSheet;
 }) => {
-	console.log('StatsRow render', { index });
+	console.log('StatsItem render', { index });
 
 	const stat = data[index];
 

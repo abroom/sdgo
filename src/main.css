@@ -34,7 +34,11 @@
 	}
 
 	h3 {
-		@apply text-3xl text-center;
+		@apply text-2xl text-center;
+	}
+
+	h4 {
+		@apply text-lg text-center;
 	}
 
 	/* Interactives */

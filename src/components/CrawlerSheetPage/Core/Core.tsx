@@ -9,16 +9,16 @@ import { CoreContent } from './CoreContent';
 import { CoreTitle } from './CoreTitle';
 
 export const Core = () => {
+	const {
+		crawlerSheet: { core },
+		updateCrawlerSheet,
+	} = useContext(CrawlerSheetContext);
+
 	const [isContentVisible, setIsContentVisible] = useState(true);
 
 	const toggleContent = useCallback(() => {
 		setIsContentVisible((prev) => !prev);
 	}, []);
-
-	const {
-		crawlerSheet: { core },
-		updateCrawlerSheet,
-	} = useContext(CrawlerSheetContext);
 
 	const editors = useEditors<CrawlerSheet['core']>();
 
