@@ -51,7 +51,7 @@ export const SectionHeader = ({
 	);
 
 	return (
-		<div className="mx-2 border-t border-b border-(--color-primary-2)">
+		<div className="mx-2 border-t border-b border-(--color-primary-3)">
 			<div className="p-2 flex gap-2 justify-end">
 				{notes ? (
 					<button
@@ -91,7 +91,7 @@ export const SectionHeader = ({
 						>
 							<p className="min-h-12 px-2 overflow-auto whitespace-pre-wrap">
 								{notesDisplay || (
-									<i className="text-(--color-primary-3) select-none">
+									<i className="text-(--color-primary-4) select-none">
 										Write notes here...
 									</i>
 								)}

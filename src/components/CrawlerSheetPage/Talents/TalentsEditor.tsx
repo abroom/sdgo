@@ -4,13 +4,13 @@ import type { CrawlerSheet, UpdateCrawlerSheet } from '@/types/CrawlerSheet';
 import { AddItemButton } from '../AddItemButton';
 import { ItemEditor } from '../ItemEditor';
 
-export const WeaponsEditor = ({
+export const TalentsEditor = ({
 	data,
 	editors,
 	updateCrawlerSheet,
 }: {
-	readonly data: CrawlerSheet['weapons']['data'];
-	readonly editors: Editors<CrawlerSheet['weapons']>;
+	readonly data: CrawlerSheet['talents']['data'];
+	readonly editors: Editors<CrawlerSheet['talents']>;
 	readonly updateCrawlerSheet: UpdateCrawlerSheet;
 }) => {
 	return (
@@ -18,20 +18,20 @@ export const WeaponsEditor = ({
 			{data.map((_, i) => (
 				<ItemEditor
 					key={i}
-					placeholder={`Weapon ${i + 1}`}
-					value={data[i].name}
+					placeholder={`Talent ${i + 1}`}
+					value={data[i].label}
 					persist={(value) => {
 						updateCrawlerSheet({
-							weapons: {
-								data: data.map((weapon, idx) =>
-									idx === i ? { ...weapon, name: value } : weapon,
+							talents: {
+								data: data.map((talent, idx) =>
+									idx === i ? { ...talent, label: value } : talent,
 								),
 							},
 						});
 					}}
 					remove={() => {
 						updateCrawlerSheet({
-							weapons: {
+							talents: {
 								data: data.filter((_, idx) => idx !== i),
 							},
 						});
@@ -40,14 +40,11 @@ export const WeaponsEditor = ({
 				/>
 			))}
 			<AddItemButton
-				label="Add Weapon"
+				label="Add Talent"
 				addItem={() => {
 					updateCrawlerSheet({
-						weapons: {
-							data: [
-								...data,
-								{ name: '', type: '', damage: '', range: '', notes: '' },
-							],
+						talents: {
+							data: [...data, { label: '', value: '' }],
 						},
 					});
 				}}

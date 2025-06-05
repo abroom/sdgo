@@ -48,7 +48,7 @@ export const DefensesHP = ({
 			onClick={() => editors.toggle(['hp'])}
 			disabled={editors.enabled.has('hp')}
 		>
-			<div className="border-r border-dotted min-w-25 p-2">
+			<div className="border-r border-dotted border-(--color-primary-3) min-w-25 p-2">
 				<h3>HP</h3>
 				<label>Hit Points</label>
 			</div>

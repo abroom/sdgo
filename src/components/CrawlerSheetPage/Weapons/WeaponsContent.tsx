@@ -7,7 +7,7 @@ import { SectionHeader } from '../SectionHeader';
 import { WeaponsEditor } from './WeaponsEditor';
 import { WeaponsItem } from './WeaponsItem';
 
-export const WeaponsContent = memo(function WepaonsContent({
+export const WeaponsContent = memo(function WeaponsContent({
 	weapons,
 	editors,
 	updateCrawlerSheet,

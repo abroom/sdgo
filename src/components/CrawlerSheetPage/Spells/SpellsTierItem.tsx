@@ -75,7 +75,7 @@ export const SpellsTierItem = ({
 				<h4
 					className={clsx(
 						'ml-10 text-left',
-						spellDisplay.forgotten && 'text-purple-950',
+						spellDisplay.forgotten && 'text-indigo-900',
 					)}
 				>
 					{spellDisplay.name || `Spell ${spellIndex + 1}`}
@@ -87,7 +87,7 @@ export const SpellsTierItem = ({
 				>
 					<div
 						className={clsx(
-							'm-2 border-t border-(--color-primary-2) flex-grow p-2',
+							'm-2 border-t border-(--color-primary-3) flex-grow p-2',
 							'grid grid-cols-2 sm:grid-cols-4 gap-2',
 						)}
 					>
@@ -147,10 +147,10 @@ export const SpellsTierItem = ({
 							/>
 						</div>
 					) : (
-						!!spellDisplay.notes && (
+						!!spellDisplay.effect && (
 							<div className="p-2 pt-0">
 								<p className="rounded-md p-2 bg-(--color-primary-2) text-left whitespace-pre-wrap">
-									{spellDisplay.notes}
+									{spellDisplay.effect}
 								</p>
 							</div>
 						)
@@ -194,14 +194,14 @@ export const SpellsTierItem = ({
 				<BoltIcon
 					className={clsx(
 						spellDisplay.forgotten
-							? 'fill-purple-950 hidden group-focus-visible:block group-hover:block'
+							? 'fill-indigo-900 hidden group-focus-visible:block group-hover:block'
 							: 'fill-sky-300 block group-focus-visible:hidden group-hover:hidden',
 					)}
 				/>
 				<BoltSlashIcon
 					className={clsx(
 						spellDisplay.forgotten
-							? 'fill-purple-950 block group-focus-visible:hidden group-hover:hidden'
+							? 'fill-indigo-900 block group-focus-visible:hidden group-hover:hidden'
 							: 'fill-sky-300 hidden group-focus-visible:block group-hover:block',
 					)}
 				/>

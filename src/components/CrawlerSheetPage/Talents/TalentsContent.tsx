@@ -4,16 +4,16 @@ import type { Editors } from '@/hooks/Editors';
 import type { CrawlerSheet, UpdateCrawlerSheet } from '@/types/CrawlerSheet';
 
 import { SectionHeader } from '../SectionHeader';
-import { SpellsEditor } from './SpellsEditor';
-import { SpellsTier } from './SpellsTier';
+import { TalentsEditor } from './TalentsEditor';
+import { TalentsItem } from './TalentsItem';
 
-export const SpellsContent = memo(function SpellsContent({
-	spells,
+export const TalentsContent = memo(function TalentsContent({
+	talents,
 	editors,
 	updateCrawlerSheet,
 }: {
-	readonly spells: CrawlerSheet['spells'];
-	readonly editors: Editors<CrawlerSheet['spells']>;
+	readonly talents: CrawlerSheet['talents'];
+	readonly editors: Editors<CrawlerSheet['talents']>;
 	readonly updateCrawlerSheet: UpdateCrawlerSheet;
 }) {
 	return (
@@ -25,32 +25,32 @@ export const SpellsContent = memo(function SpellsContent({
 						if (editors.enabled.size > 0) {
 							editors.disableAll();
 						} else {
-							editors.toggle(['tiers']);
+							editors.toggle(['data']);
 						}
 					},
 				}}
 				notes={{
 					isEditing: editors.enabled.has('notes'),
-					value: spells.notes,
+					value: talents.notes,
 					persistValue: (value) =>
-						updateCrawlerSheet({ spells: { notes: value } }),
+						updateCrawlerSheet({ talents: { notes: value } }),
 					toggleEditor: (isEnabled) => {
 						editors.toggle(['notes'], isEnabled);
 					},
 				}}
 			/>
 			<div className="m-4 grid gap-4">
-				{editors.enabled.has('tiers') ? (
-					<SpellsEditor
-						tiers={spells.tiers}
+				{editors.enabled.has('data') ? (
+					<TalentsEditor
+						data={talents.data}
 						editors={editors}
 						updateCrawlerSheet={updateCrawlerSheet}
 					/>
 				) : (
-					spells.tiers.map((_, index) => (
-						<SpellsTier
+					talents.data.map((_, index) => (
+						<TalentsItem
 							key={index}
-							tiers={spells.tiers}
+							data={talents.data}
 							index={index}
 							editors={editors}
 							updateCrawlerSheet={updateCrawlerSheet}

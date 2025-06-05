@@ -64,7 +64,7 @@ export const SpellsTierContent = ({
 							},
 						}),
 					toggleEditor: (isEnabled) => {
-						editors.toggle(['notes'], isEnabled);
+						editors.toggle([`tiers.${index}.notes`], isEnabled);
 					},
 				}}
 			/>

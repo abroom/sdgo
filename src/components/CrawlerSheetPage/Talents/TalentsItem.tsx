@@ -7,23 +7,21 @@ import {
 	useState,
 } from 'react';
 
-import clsx from 'clsx/lite';
-
 import type { Editors } from '@/hooks/Editors';
 import type { CrawlerSheet, UpdateCrawlerSheet } from '@/types/CrawlerSheet';
 import { deepCopy } from '@/utils/DeepCopy';
 import { isKeyExit } from '@/utils/IsKeyExit';
 import { resizeElement } from '@/utils/ResizeElement';
 
-export const WeaponsItem = ({
+export const TalentsItem = ({
 	data,
 	index,
 	editors,
 	updateCrawlerSheet,
 }: {
-	readonly data: CrawlerSheet['weapons']['data'];
+	readonly data: CrawlerSheet['talents']['data'];
 	readonly index: number;
-	readonly editors: Editors<CrawlerSheet['weapons']>;
+	readonly editors: Editors<CrawlerSheet['talents']>;
 	readonly updateCrawlerSheet: UpdateCrawlerSheet;
 }) => {
 	const { editorKey, editorEnabled } = useMemo(() => {
@@ -32,25 +30,25 @@ export const WeaponsItem = ({
 		return { editorKey, editorEnabled };
 	}, [editors.enabled, index]);
 
-	const [weaponDisplay, setWeaponDisplay] = useState(deepCopy(data[index]));
+	const [talentDisplay, setTalentDisplay] = useState(deepCopy(data[index]));
 	useEffect(() => {
-		setWeaponDisplay(deepCopy(data[index]));
+		setTalentDisplay(deepCopy(data[index]));
 	}, [data, index]);
 
 	const persistTimeoutRefs = useRef<Record<string, number | undefined>>({});
 
 	const handleChange = useCallback(
-		(field: keyof CrawlerSheet['weapons']['data'][number]) =>
+		(field: keyof CrawlerSheet['talents']['data'][number]) =>
 			({
 				target: { value },
 			}: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-				setWeaponDisplay((prev) => ({ ...prev, [field]: value }));
+				setTalentDisplay((prev) => ({ ...prev, [field]: value }));
 				clearTimeout(persistTimeoutRefs.current[field]);
 				persistTimeoutRefs.current[field] = window.setTimeout(() => {
 					updateCrawlerSheet({
-						weapons: {
-							data: data.map((w, i) =>
-								i === index ? { ...w, [field]: value } : w,
+						talents: {
+							data: data.map((talent, i) =>
+								i === index ? { ...talent, [field]: value } : talent,
 							),
 						},
 					});
@@ -68,47 +66,14 @@ export const WeaponsItem = ({
 				editors.toggle([editorKey]);
 			}}
 		>
-			<h3 className="text-left">
-				{weaponDisplay.name || `Weapon ${index + 1}`}
+			<h3 className="mb-2 text-left">
+				{talentDisplay.label || `Talent ${index + 1}`}
 			</h3>
-			<div
-				className={clsx(
-					'm-2 border-t border-(--color-primary-3) flex-grow p-2',
-					'grid grid-cols-2 sm:grid-cols-4 gap-2',
-				)}
-			>
-				{(['type', 'range', 'mod', 'damage'] as const).map((item, i) => (
-					<div key={item}>
-						<div className="h-full flex flex-col">
-							{editorEnabled ? (
-								<input
-									className="p-1 text-center placeholder:capitalize "
-									type="text"
-									value={weaponDisplay[item] || ''}
-									placeholder={item}
-									onChange={handleChange(item)}
-									onKeyDown={(e) => {
-										if (isKeyExit(e)) {
-											editors.toggle([editorKey]);
-										}
-									}}
-									autoFocus={i === 0}
-								/>
-							) : (
-								<h4 className="flex-grow flex items-center justify-center">
-									<span className="overflow-auto">{weaponDisplay[item]}</span>
-								</h4>
-							)}
-							<label className="capitalize">{item}</label>
-						</div>
-					</div>
-				))}
-			</div>
 			{editorEnabled ? (
 				<div className="p-2 pt-0">
 					<textarea
 						className="p-2"
-						onChange={handleChange('notes')}
+						onChange={handleChange('value')}
 						onFocus={resizeElement}
 						onKeyDown={(e) => {
 							if (isKeyExit(e, true)) {
@@ -117,15 +82,15 @@ export const WeaponsItem = ({
 								resizeElement(e);
 							}
 						}}
-						placeholder="Notes"
-						value={weaponDisplay.notes}
+						placeholder="Talent Details"
+						value={talentDisplay.value}
 					/>
 				</div>
 			) : (
-				!!weaponDisplay.notes && (
+				!!talentDisplay.value && (
 					<div className="p-2 pt-0">
 						<p className="rounded-md p-2 bg-(--color-primary-2) text-left whitespace-pre-wrap">
-							{weaponDisplay.notes}
+							{talentDisplay.value}
 						</p>
 					</div>
 				)
