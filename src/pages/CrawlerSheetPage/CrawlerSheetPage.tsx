@@ -7,7 +7,7 @@ import { CrawlerSheetProvider } from '@/contexts/CrawlerSheetContext/CrawlerShee
 
 export const CrawlerSheetPage = () => {
 	return (
-		<div className="h-full w-full p-6 flex flex-col gap-6 overflow-auto">
+		<div className="h-full w-full p-2 sm:p-6 flex flex-col gap-2 sm:gap-6 overflow-auto">
 			<CrawlerSheetProvider>
 				<Core />
 				<Stats />

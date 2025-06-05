@@ -13,7 +13,7 @@ import NewspaperIcon from '@heroicons/react/24/solid/NewspaperIcon';
 import { isKeyExit } from '@/utils/IsKeyExit';
 import { resizeElement } from '@/utils/ResizeElement';
 
-const buttonClassName = 'p-1 w-8 rounded-sm';
+const buttonClassName = 'rounded-sm w-8 p-1';
 
 export const SectionHeader = ({
 	edit,

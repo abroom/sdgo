@@ -1,11 +1,4 @@
-import {
-	type ChangeEvent,
-	useCallback,
-	useEffect,
-	useMemo,
-	useRef,
-	useState,
-} from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import clsx from 'clsx/lite';
 
@@ -14,6 +7,7 @@ import type { CrawlerSheet, UpdateCrawlerSheet } from '@/types/CrawlerSheet';
 import { deepCopy } from '@/utils/DeepCopy';
 import { isKeyExit } from '@/utils/IsKeyExit';
 import { resizeElement } from '@/utils/ResizeElement';
+import { BoltIcon, BoltSlashIcon } from '@heroicons/react/24/solid';
 
 export const SpellsTierItem = ({
 	tiers,
@@ -45,9 +39,7 @@ export const SpellsTierItem = ({
 
 	const handleChange = useCallback(
 		(field: keyof CrawlerSheet['spells']['tiers'][number]['data'][number]) =>
-			({
-				target: { value },
-			}: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+			({ target: { value } }: { target: { value: string | boolean } }) => {
 				setSpellDisplay((prev) => ({ ...prev, [field]: value }));
 				clearTimeout(persistTimeoutRefs.current[field]);
 				persistTimeoutRefs.current[field] = window.setTimeout(() => {
@@ -72,110 +64,148 @@ export const SpellsTierItem = ({
 	);
 
 	return (
-		<button
-			className="p-2 flex flex-col"
-			disabled={editorEnabled}
-			onClick={() => {
-				editors.toggle([editorKey]);
-			}}
-		>
-			<h4 className="text-left">
-				{spellDisplay.name || `Spell ${spellIndex + 1}`}
-			</h4>
-			<div
-				className={clsx(
-					'm-2 border-t border-(--color-primary-2) flex-grow p-2',
-					'grid grid-cols-2 sm:grid-cols-4 gap-2',
-				)}
+		<div className="relative">
+			<button
+				className="h-full w-full p-2 flex flex-col"
+				disabled={editorEnabled}
+				onClick={() => {
+					editors.toggle([editorKey]);
+				}}
 			>
-				{(['range', 'duration', 'mod', 'dc'] as const).map((item, i) => (
-					<div key={item}>
-						<div className="h-full flex flex-col">
-							{editorEnabled ? (
-								<input
-									className={clsx(
-										'p-1 text-center',
-										item === 'dc'
-											? 'placeholder:uppercase'
-											: 'placeholder:capitalize',
+				<h4
+					className={clsx(
+						'ml-10 text-left',
+						spellDisplay.forgotten && 'text-purple-950',
+					)}
+				>
+					{spellDisplay.name || `Spell ${spellIndex + 1}`}
+				</h4>
+				<div
+					className={clsx(
+						spellDisplay.forgotten && !editorEnabled && 'blur brightness-50',
+					)}
+				>
+					<div
+						className={clsx(
+							'm-2 border-t border-(--color-primary-2) flex-grow p-2',
+							'grid grid-cols-2 sm:grid-cols-4 gap-2',
+						)}
+					>
+						{(['range', 'duration', 'mod', 'dc'] as const).map((item, i) => (
+							<div key={item}>
+								<div className="h-full flex flex-col">
+									{editorEnabled ? (
+										<input
+											className={clsx(
+												'p-1 text-center',
+												item === 'dc'
+													? 'placeholder:uppercase'
+													: 'placeholder:capitalize',
+											)}
+											type="text"
+											value={spellDisplay[item] || ''}
+											placeholder={item}
+											onChange={handleChange(item)}
+											onKeyDown={(e) => {
+												if (isKeyExit(e)) {
+													editors.toggle([editorKey]);
+												}
+											}}
+											autoFocus={i === 0}
+										/>
+									) : (
+										<h4 className="flex-grow flex items-center justify-center">
+											<span className="overflow-auto">
+												{spellDisplay[item]}
+											</span>
+										</h4>
 									)}
-									type="text"
-									value={spellDisplay[item] || ''}
-									placeholder={item}
-									onChange={handleChange(item)}
-									onKeyDown={(e) => {
-										if (isKeyExit(e)) {
-											editors.toggle([editorKey]);
-										}
-									}}
-									autoFocus={i === 0}
-								/>
-							) : (
-								<h4 className="flex-grow flex items-center justify-center">
-									<span className="overflow-auto">{spellDisplay[item]}</span>
-								</h4>
-							)}
-							<label
-								className={clsx(item === 'dc' ? 'uppercase' : 'capitalize')}
-							>
-								{item}
-							</label>
+									<label
+										className={clsx(item === 'dc' ? 'uppercase' : 'capitalize')}
+									>
+										{item}
+									</label>
+								</div>
+							</div>
+						))}
+					</div>
+					{editorEnabled ? (
+						<div className="p-2 pt-0">
+							<textarea
+								className="p-2"
+								onChange={handleChange('effect')}
+								onFocus={resizeElement}
+								onKeyDown={(e) => {
+									if (isKeyExit(e, true)) {
+										editors.toggle([editorKey]);
+									} else {
+										resizeElement(e);
+									}
+								}}
+								placeholder="Effect"
+								value={spellDisplay.effect}
+							/>
 						</div>
-					</div>
-				))}
-			</div>
-			{editorEnabled ? (
-				<div className="p-2 pt-0">
-					<textarea
-						className="p-2"
-						onChange={handleChange('effect')}
-						onFocus={resizeElement}
-						onKeyDown={(e) => {
-							if (isKeyExit(e, true)) {
-								editors.toggle([editorKey]);
-							} else {
-								resizeElement(e);
-							}
-						}}
-						placeholder="Effect"
-						value={spellDisplay.effect}
-					/>
+					) : (
+						!!spellDisplay.notes && (
+							<div className="p-2 pt-0">
+								<p className="rounded-md p-2 bg-(--color-primary-2) text-left whitespace-pre-wrap">
+									{spellDisplay.notes}
+								</p>
+							</div>
+						)
+					)}
+					{editorEnabled ? (
+						<div className="p-2 pt-0">
+							<textarea
+								className="p-2"
+								onChange={handleChange('notes')}
+								onFocus={resizeElement}
+								onKeyDown={(e) => {
+									if (isKeyExit(e, true)) {
+										editors.toggle([editorKey]);
+									} else {
+										resizeElement(e);
+									}
+								}}
+								placeholder="Notes"
+								value={spellDisplay.notes}
+							/>
+						</div>
+					) : (
+						!!spellDisplay.notes && (
+							<div className="p-2 pt-0">
+								<p className="rounded-md p-2 bg-(--color-primary-2) text-left whitespace-pre-wrap">
+									{spellDisplay.notes}
+								</p>
+							</div>
+						)
+					)}
 				</div>
-			) : (
-				!!spellDisplay.notes && (
-					<div className="p-2 pt-0">
-						<p className="rounded-md p-2 bg-(--color-primary-2) text-left whitespace-pre-wrap">
-							{spellDisplay.notes}
-						</p>
-					</div>
-				)
-			)}
-			{editorEnabled ? (
-				<div className="p-2 pt-0">
-					<textarea
-						className="p-2"
-						onChange={handleChange('notes')}
-						onFocus={resizeElement}
-						onKeyDown={(e) => {
-							if (isKeyExit(e, true)) {
-								editors.toggle([editorKey]);
-							} else {
-								resizeElement(e);
-							}
-						}}
-						placeholder="Notes"
-						value={spellDisplay.notes}
-					/>
-				</div>
-			) : (
-				!!spellDisplay.notes && (
-					<div className="p-2 pt-0">
-						<p className="rounded-md p-2 bg-(--color-primary-2) text-left whitespace-pre-wrap">
-							{spellDisplay.notes}
-						</p>
-					</div>
-				)
-			)}
-		</button>
+			</button>
+			<button
+				className="rounded-sm w-8 p-1 group absolute top-2 left-2"
+				onClick={() =>
+					handleChange('forgotten')({
+						target: { value: !spellDisplay.forgotten },
+					})
+				}
+			>
+				<BoltIcon
+					className={clsx(
+						spellDisplay.forgotten
+							? 'fill-purple-950 hidden group-focus-visible:block group-hover:block'
+							: 'fill-sky-300 block group-focus-visible:hidden group-hover:hidden',
+					)}
+				/>
+				<BoltSlashIcon
+					className={clsx(
+						spellDisplay.forgotten
+							? 'fill-purple-950 block group-focus-visible:hidden group-hover:hidden'
+							: 'fill-sky-300 hidden group-focus-visible:block group-hover:block',
+					)}
+				/>
+			</button>
+		</div>
 	);
 };
