@@ -18,7 +18,7 @@ export const GearFreeCarry = ({
 	const [isContentVisible, setIsContentVisible] = useState(true);
 
 	return (
-		<div className="border border-(--color-primary-3) rounded-md p-2 grid grid-cols-[repeat(auto-fill,minmax(500px,1fr))] gap-2">
+		<div className="border border-(--color-primary-3) rounded-md p-2 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-2">
 			<button
 				className="border-none col-span-full p-2"
 				onClick={() => setIsContentVisible((prev) => !prev)}

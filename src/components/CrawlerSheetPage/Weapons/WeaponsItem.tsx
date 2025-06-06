@@ -55,7 +55,7 @@ export const WeaponsItem = ({
 						},
 					});
 					persistTimeoutRefs.current[field] = undefined;
-				}, 500);
+				}, 200);
 			},
 		[data, index, updateCrawlerSheet],
 	);

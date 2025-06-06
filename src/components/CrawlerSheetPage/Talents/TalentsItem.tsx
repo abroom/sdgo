@@ -53,7 +53,7 @@ export const TalentsItem = ({
 						},
 					});
 					persistTimeoutRefs.current[field] = undefined;
-				}, 500);
+				}, 200);
 			},
 		[data, index, updateCrawlerSheet],
 	);

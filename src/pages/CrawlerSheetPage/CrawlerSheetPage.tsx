@@ -1,6 +1,7 @@
 import { Core } from '@/components/CrawlerSheetPage/Core/Core';
 import { Defenses } from '@/components/CrawlerSheetPage/Defenses/Defenses';
 import { Gear } from '@/components/CrawlerSheetPage/Gear/Gear';
+import { SaveLoad } from '@/components/CrawlerSheetPage/SaveLoad/SaveLoad';
 import { Spells } from '@/components/CrawlerSheetPage/Spells/Spells';
 import { Stats } from '@/components/CrawlerSheetPage/Stats/Stats';
 import { Talents } from '@/components/CrawlerSheetPage/Talents/Talents';
@@ -18,6 +19,7 @@ export const CrawlerSheetPage = () => {
 				<Spells />
 				<Talents />
 				<Gear />
+				<SaveLoad />
 			</CrawlerSheetProvider>
 		</div>
 	);

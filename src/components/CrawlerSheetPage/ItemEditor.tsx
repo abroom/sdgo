@@ -37,7 +37,7 @@ export const ItemEditor = memo(function ItemEditor({
 			persistTimeoutRef.current = setTimeout(() => {
 				persist(value);
 				persistTimeoutRef.current = undefined;
-			}, 500);
+			}, 200);
 		},
 		[persist],
 	);

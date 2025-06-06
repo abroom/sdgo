@@ -45,7 +45,7 @@ export const SectionHeader = ({
 			persistTimeoutRef.current = setTimeout(() => {
 				notes?.persistValue(value);
 				persistTimeoutRef.current = undefined;
-			}, 500);
+			}, 200);
 		},
 		[notes],
 	);

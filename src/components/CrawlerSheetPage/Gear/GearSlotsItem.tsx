@@ -53,7 +53,7 @@ export const GearSlotsItem = ({
 						},
 					});
 					persistTimeoutRefs.current[field] = undefined;
-				}, 500);
+				}, 200);
 			},
 		[slots, index, updateCrawlerSheet],
 	);

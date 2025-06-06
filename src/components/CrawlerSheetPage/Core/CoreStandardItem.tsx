@@ -38,7 +38,7 @@ export const CoreStandardItem = ({
 			persistTimeoutRef.current = setTimeout(() => {
 				updateCrawlerSheet({ core: { [itemKey]: value } });
 				persistTimeoutRef.current = undefined;
-			}, 500);
+			}, 200);
 		},
 		[itemKey, updateCrawlerSheet],
 	);

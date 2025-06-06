@@ -35,7 +35,7 @@ export const CoreExperienceItem = ({
 			persistCurrentTimeoutRef.current = setTimeout(() => {
 				updateCrawlerSheet({ core: { xp: { current: value } } });
 				persistCurrentTimeoutRef.current = undefined;
-			}, 500);
+			}, 200);
 		},
 		[updateCrawlerSheet],
 	);
@@ -48,7 +48,7 @@ export const CoreExperienceItem = ({
 			persistRequiredTimeoutRef.current = setTimeout(() => {
 				updateCrawlerSheet({ core: { xp: { required: value } } });
 				persistRequiredTimeoutRef.current = undefined;
-			}, 500);
+			}, 200);
 		},
 		[updateCrawlerSheet],
 	);

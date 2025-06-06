@@ -37,7 +37,7 @@ export const DefensesHP = ({
 				persistTimeoutRef.current[field] = window.setTimeout(() => {
 					updateCrawlerSheet({ defenses: { hp: { [field]: value } } });
 					persistTimeoutRef.current[field] = undefined;
-				}, 500);
+				}, 200);
 			},
 		[updateCrawlerSheet],
 	);

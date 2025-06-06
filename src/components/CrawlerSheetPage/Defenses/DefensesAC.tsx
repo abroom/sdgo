@@ -27,7 +27,7 @@ export const DefensesAC = ({
 		persistAcTimeoutRef.current = setTimeout(() => {
 			updateCrawlerSheet({ defenses: { ac: value } });
 			persistAcTimeoutRef.current = undefined;
-		}, 500);
+		}, 200);
 	};
 
 	return (

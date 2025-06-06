@@ -53,14 +53,14 @@ export const GearWealthItem = ({
 						},
 					});
 					persistTimeoutRefs.current[field] = undefined;
-				}, 500);
+				}, 200);
 			},
 		[wealth, index, updateCrawlerSheet],
 	);
 
 	return (
 		<button
-			className="flex flex-col p-2"
+			className="p-2 flex flex-col"
 			disabled={editorEnabled}
 			onClick={() => {
 				editors.toggle([editorKey]);

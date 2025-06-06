@@ -55,7 +55,7 @@ export const GearFreeCarryItem = ({
 						},
 					});
 					persistTimeoutRefs.current[field] = undefined;
-				}, 500);
+				}, 200);
 			},
 		[freeCarry, index, updateCrawlerSheet],
 	);

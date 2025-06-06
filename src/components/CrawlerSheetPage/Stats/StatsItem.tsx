@@ -52,7 +52,7 @@ export const StatsItem = ({
 					},
 				});
 				persistScoreTimeoutRef.current = undefined;
-			}, 500);
+			}, 200);
 		},
 		[data, index, updateCrawlerSheet],
 	);
@@ -71,7 +71,7 @@ export const StatsItem = ({
 					},
 				});
 				persistModTimeoutRef.current = undefined;
-			}, 500);
+			}, 200);
 		},
 		[data, index, updateCrawlerSheet],
 	);

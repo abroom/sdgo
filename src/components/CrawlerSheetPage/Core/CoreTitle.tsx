@@ -40,7 +40,7 @@ export const CoreTitle = memo(function CoreTitle({
 			persistTimeoutRef.current = setTimeout(() => {
 				updateCrawlerSheet({ core: { name: value } });
 				persistTimeoutRef.current = undefined;
-			}, 500);
+			}, 200);
 		},
 		[updateCrawlerSheet],
 	);

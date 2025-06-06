@@ -51,6 +51,7 @@
 	input,
 	textarea {
 		@apply border border-(--color-primary-3) rounded-md
+			p-2
 			not-disabled:hover:outline-1 hover:outline-(--color-secondary)
 			not-disabled:focus-visible:outline-1 focus-visible:outline-(--color-secondary)
 			not-disabled:hover:shadow-(--highlight)

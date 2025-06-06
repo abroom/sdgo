@@ -58,7 +58,7 @@ export const SpellsTierItem = ({
 						},
 					});
 					persistTimeoutRefs.current[field] = undefined;
-				}, 500);
+				}, 200);
 			},
 		[tiers, tierIndex, spellIndex, updateCrawlerSheet],
 	);
