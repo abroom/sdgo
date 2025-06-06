@@ -1,6 +1,6 @@
 import type { CrawlerSheet } from '../../types/CrawlerSheet';
 
-export const CRAWLER_SHEET__SHADOWDARK: CrawlerSheet = {
+export const CRAWLER_SHEET__CYBERDARK: CrawlerSheet = {
 	core: {
 		name: '',
 		player: '',
@@ -28,7 +28,7 @@ export const CRAWLER_SHEET__SHADOWDARK: CrawlerSheet = {
 	defenses: {
 		ac: '',
 		hp: { current: '', max: '' },
-		notes: '',
+		notes: 'Armor Bulk: 0',
 	},
 	weapons: {
 		data: [],
@@ -49,16 +49,17 @@ export const CRAWLER_SHEET__SHADOWDARK: CrawlerSheet = {
 	},
 	gear: {
 		wealth: [
-			{ type: 'GP', quantity: '' },
-			{ type: 'SP', quantity: '' },
-			{ type: 'CP', quantity: '' },
+			{ type: 'Ꞓrypt', quantity: '' },
+			{ type: 'CHROME Slots', quantity: '' },
+			{ type: 'Living Standard', quantity: '' },
+			{ type: 'TraumaCare', quantity: '' },
 		],
 		slots: [
-			{ name: 'Flint and steel', quantity: '1' },
-			{ name: 'Torch', quantity: '1' },
-			{ name: 'Torch', quantity: '1' },
+			{ name: 'Flint and steel UUID', quantity: '1' },
+			{ name: 'LITE VPN', quantity: '1' },
+			{ name: 'LITE VPN', quantity: '1' },
 			{ name: 'Rations', quantity: '3 / 3' },
-			{ name: 'Iron spikes', quantity: '10 / 10' },
+			{ name: 'Carbon spikes', quantity: '10 / 10' },
 			{ name: 'Grappling hook', quantity: '1' },
 			{ name: 'Rope', quantity: "60' / 60'" },
 		],

@@ -1,6 +1,6 @@
 import type { CrawlerSheet } from '../../types/CrawlerSheet';
 
-export const CRAWLER_SHEET__SHADOWDARK: CrawlerSheet = {
+export const CRAWLER_SHEET__DARK_SUNS_SHADOW: CrawlerSheet = {
 	core: {
 		name: '',
 		player: '',
@@ -22,6 +22,7 @@ export const CRAWLER_SHEET__SHADOWDARK: CrawlerSheet = {
 			{ name: 'Intelligence', score: '', mod: '' },
 			{ name: 'Wisdom', score: '', mod: '' },
 			{ name: 'Charisma', score: '', mod: '' },
+			{ name: 'Psionics', score: '', mod: '' },
 		],
 		notes: '',
 	},
@@ -49,16 +50,16 @@ export const CRAWLER_SHEET__SHADOWDARK: CrawlerSheet = {
 	},
 	gear: {
 		wealth: [
-			{ type: 'GP', quantity: '' },
-			{ type: 'SP', quantity: '' },
-			{ type: 'CP', quantity: '' },
+			{ type: 'Genuine Pelvics', quantity: '' },
+			{ type: 'Stone Pounds', quantity: '' },
+			{ type: 'Clay Pennies', quantity: '' },
 		],
 		slots: [
 			{ name: 'Flint and steel', quantity: '1' },
 			{ name: 'Torch', quantity: '1' },
 			{ name: 'Torch', quantity: '1' },
 			{ name: 'Rations', quantity: '3 / 3' },
-			{ name: 'Iron spikes', quantity: '10 / 10' },
+			{ name: 'Bone spikes', quantity: '10 / 10' },
 			{ name: 'Grappling hook', quantity: '1' },
 			{ name: 'Rope', quantity: "60' / 60'" },
 		],

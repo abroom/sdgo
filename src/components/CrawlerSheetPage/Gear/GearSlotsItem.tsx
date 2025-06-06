@@ -99,10 +99,10 @@ export const GearSlotsItem = ({
 				</div>
 			) : (
 				<div className="p-2 flex justify-between items-center">
-					<p className="min-h-9 flex items-center justify-center text-xl overflow-auto">
+					<p className="min-h-9 flex items-center text-left text-xl overflow-auto">
 						{slotsDisplay.name}
 					</p>
-					<p className="min-h-9 flex items-center text-cnter text-xl overflow-auto">
+					<p className="min-h-9 flex items-center text-right text-xl overflow-auto">
 						{slotsDisplay.quantity}
 					</p>
 				</div>

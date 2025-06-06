@@ -101,10 +101,10 @@ export const GearFreeCarryItem = ({
 				</div>
 			) : (
 				<div className="p-2 flex justify-between items-center">
-					<p className="min-h-9 flex items-center justify-center text-xl overflow-auto">
+					<p className="min-h-9 flex items-center text-left text-xl overflow-auto">
 						{freeCarryDisplay.name}
 					</p>
-					<p className="min-h-9 flex items-center text-cnter text-xl overflow-auto">
+					<p className="min-h-9 flex items-center text-right text-xl overflow-auto">
 						{freeCarryDisplay.quantity}
 					</p>
 				</div>

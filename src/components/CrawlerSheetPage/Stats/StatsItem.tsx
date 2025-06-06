@@ -123,11 +123,13 @@ export const StatsItem = ({
 			) : (
 				<>
 					<div className="flex flex-col items-center justify-center">
-						<p className="max-w-full text-3xl overflow-auto">{score}</p>
+						<p className="max-w-full flex-grow text-3xl overflow-auto">
+							{score}
+						</p>
 						<label>Score</label>
 					</div>
 					<div className="flex flex-col items-center justify-center">
-						<p className="max-w-full text-3xl overflow-auto">{mod}</p>
+						<p className="max-w-full flex-grow text-3xl overflow-auto">{mod}</p>
 						<label>Mod</label>
 					</div>
 				</>
