@@ -49,6 +49,7 @@
 
 	button,
 	input,
+	select,
 	textarea {
 		@apply border border-(--color-primary-3) rounded-md
 			p-2

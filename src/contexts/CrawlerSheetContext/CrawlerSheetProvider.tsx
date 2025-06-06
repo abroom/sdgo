@@ -1,6 +1,6 @@
 import { useCallback, useState, type ReactNode } from 'react';
 
-import { CRAWLER_SHEET__MOCK } from '@/constants/CrawlerSheets/Mock';
+import { CRAWLER_SHEET__BLANK } from '@/constants/CrawlerSheets/Blank';
 import type { CrawlerSheet } from '@/types/CrawlerSheet';
 import type { DeepPartial } from '@/types/DeepPartial';
 
@@ -12,7 +12,7 @@ export const CrawlerSheetProvider = ({
 }: {
 	readonly children: ReactNode;
 }) => {
-	const [crawlerSheet, setCrawlerSheet] = useState(CRAWLER_SHEET__MOCK);
+	const [crawlerSheet, setCrawlerSheet] = useState(CRAWLER_SHEET__BLANK);
 
 	const updateCrawlerSheet = useCallback(
 		(crawlerSheetUpdates: DeepPartial<CrawlerSheet>) => {
