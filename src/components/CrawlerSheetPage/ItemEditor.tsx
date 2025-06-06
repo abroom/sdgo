@@ -43,30 +43,28 @@ export const ItemEditor = memo(function ItemEditor({
 	);
 
 	return (
-		<div>
-			<span className="mb-2 p-2 flex gap-2 items-center justify-center">
-				<input
-					className="text-xl h-[2.6rem] border rounded px-2"
-					type="text"
-					placeholder={placeholder}
-					value={valueDisplay}
-					onChange={handleChange}
-					onKeyDown={(e) => {
-						if (isKeyExit(e)) {
-							toggle();
-						}
-					}}
-				/>
-				<button
-					className="border-red-950 outline-red-300 shadow-red-300 p-2 bg-red-950 text-red-500"
-					onClick={() => {
-						clearTimeout(persistTimeoutRef.current);
-						remove();
-					}}
-				>
-					<TrashIcon width={24} />
-				</button>
-			</span>
+		<div className="mb-2 p-2 flex gap-2 items-center justify-center">
+			<input
+				className="text-xl h-[2.6rem] border rounded px-2"
+				type="text"
+				placeholder={placeholder}
+				value={valueDisplay}
+				onChange={handleChange}
+				onKeyDown={(e) => {
+					if (isKeyExit(e)) {
+						toggle();
+					}
+				}}
+			/>
+			<button
+				className="border-red-950 outline-red-300 shadow-red-300 p-2 bg-red-950 text-red-500"
+				onClick={() => {
+					clearTimeout(persistTimeoutRef.current);
+					remove();
+				}}
+			>
+				<TrashIcon width={24} />
+			</button>
 		</div>
 	);
 });

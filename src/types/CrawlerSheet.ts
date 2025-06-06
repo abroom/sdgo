@@ -57,9 +57,7 @@ export interface CrawlerSheet {
 	}>;
 	gear: Readonly<{
 		wealth: readonly Readonly<{ type: string; quantity: string }>[];
-		maxSlots: string;
-		items: readonly Readonly<{
-			slot: string;
+		slots: readonly Readonly<{
 			name: string;
 			quantity: string;
 		}>[];

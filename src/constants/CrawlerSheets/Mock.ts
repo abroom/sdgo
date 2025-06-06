@@ -100,12 +100,10 @@ export const CRAWLER_SHEET__MOCK: CrawlerSheet = {
 			{ type: 'gold', quantity: '50' },
 			{ type: 'silver', quantity: '5' },
 		],
-		maxSlots: '15',
-		items: [
-			{ slot: '1', name: 'Healing Potion', quantity: '2 / 10' },
-			{ slot: '2', name: 'Rope', quantity: '22 / 50 ft.' },
+		slots: [
+			{ name: 'Healing Potion', quantity: '2 / 10' },
+			{ name: 'Rope', quantity: '22 / 50 ft.' },
 			{
-				slot: '3',
 				name: 'Map of Middle-earth',
 				quantity: '1',
 			},
