@@ -1,7 +1,5 @@
 import type { CrawlerSheet } from '../../types/CrawlerSheet';
 
-// test
-
 export const CRAWLER_SHEET__SHADOWDARK: CrawlerSheet = {
 	core: {
 		name: '',
