@@ -18,8 +18,6 @@ export const Weapons = () => {
 	);
 	const editors = useEditors<CrawlerSheet['weapons']>();
 
-	console.log('Weapons render', { weapons, editors });
-
 	return (
 		<Section>
 			<button

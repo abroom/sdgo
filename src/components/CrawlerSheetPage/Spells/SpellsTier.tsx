@@ -21,8 +21,6 @@ export const SpellsTier = ({
 
 	const [isContentVisible, setIsContentVisible] = useState(true);
 
-	console.log('SpellsTier render', { tier, editors });
-
 	return (
 		<Section>
 			<button

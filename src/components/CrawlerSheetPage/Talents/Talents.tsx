@@ -18,8 +18,6 @@ export const Talents = () => {
 	);
 	const editors = useEditors<CrawlerSheet['talents']>();
 
-	console.log('Talents render', { talents, editors });
-
 	return (
 		<Section>
 			<button

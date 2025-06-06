@@ -17,8 +17,6 @@ export const Defenses = () => {
 
 	const editors = useEditors<CrawlerSheet['defenses']>();
 
-	console.log('Defenses render', { defenses, editors });
-
 	return (
 		<Section>
 			<button

@@ -16,8 +16,6 @@ export const Gear = () => {
 	const [isContentVisible, setIsContentVisible] = useState(true);
 	const editors = useEditors<CrawlerSheet['gear']>();
 
-	console.log('Gear render', { gear, editors });
-
 	return (
 		<Section>
 			<button

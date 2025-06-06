@@ -13,14 +13,10 @@ export const Spells = () => {
 		updateCrawlerSheet,
 	} = useContext(CrawlerSheetContext);
 
-	console.log('Spells context', { spells });
-
 	const [isContentVisible, setIsContentVisible] = useState(
 		spells.tiers.length > 0 || spells.notes.length > 0,
 	);
 	const editors = useEditors<CrawlerSheet['spells']>();
-
-	console.log('Spells render', { spells, editors });
 
 	return (
 		<Section>

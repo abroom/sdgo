@@ -21,8 +21,6 @@ export const StatsItem = ({
 	readonly editors: Editors<CrawlerSheet['stats']>;
 	readonly updateCrawlerSheet: UpdateCrawlerSheet;
 }) => {
-	console.log('StatsItem render', { index });
-
 	const stat = data[index];
 
 	const { editorKey, editorEnabled } = useMemo(() => {

@@ -17,8 +17,6 @@ export const Stats = () => {
 
 	const editors = useEditors<CrawlerSheet['stats']>();
 
-	console.log('Stats render', { stats, editors });
-
 	return (
 		<Section>
 			<button

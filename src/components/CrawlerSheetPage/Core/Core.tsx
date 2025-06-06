@@ -22,8 +22,6 @@ export const Core = () => {
 
 	const editors = useEditors<CrawlerSheet['core']>();
 
-	console.log('Core render', { core, editors });
-
 	return (
 		<Section>
 			<CoreTitle
