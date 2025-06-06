@@ -52,19 +52,21 @@ export interface CrawlerSheet {
 		notes: string;
 	}>;
 	talents: Readonly<{
-		data: readonly Readonly<{ label: string; value: string }>[];
+		data: readonly Readonly<{ name: string; description: string }>[];
 		notes: string;
 	}>;
 	gear: Readonly<{
-		wealth: readonly Readonly<{ type: string; amount: string }>[];
+		wealth: readonly Readonly<{ type: string; quantity: string }>[];
 		maxSlots: string;
 		items: readonly Readonly<{
 			slot: string;
 			name: string;
-			count: string;
-			capacity: string;
+			quantity: string;
 		}>[];
-		freeCarry: string;
+		freeCarry: readonly Readonly<{
+			name: string;
+			quantity: string;
+		}>[];
 		notes: string;
 	}>;
 }

@@ -19,12 +19,12 @@ export const TalentsEditor = ({
 				<ItemEditor
 					key={i}
 					placeholder={`Talent ${i + 1}`}
-					value={data[i].label}
+					value={data[i].name}
 					persist={(value) => {
 						updateCrawlerSheet({
 							talents: {
 								data: data.map((talent, idx) =>
-									idx === i ? { ...talent, label: value } : talent,
+									idx === i ? { ...talent, name: value } : talent,
 								),
 							},
 						});
@@ -44,7 +44,7 @@ export const TalentsEditor = ({
 				addItem={() => {
 					updateCrawlerSheet({
 						talents: {
-							data: [...data, { label: '', value: '' }],
+							data: [...data, { name: '', description: '' }],
 						},
 					});
 				}}

@@ -67,13 +67,13 @@ export const TalentsItem = ({
 			}}
 		>
 			<h3 className="mb-2 text-left">
-				{talentDisplay.label || `Talent ${index + 1}`}
+				{talentDisplay.name || `Talent ${index + 1}`}
 			</h3>
 			{editorEnabled ? (
 				<div className="p-2 pt-0">
 					<textarea
 						className="p-2"
-						onChange={handleChange('value')}
+						onChange={handleChange('description')}
 						onFocus={resizeElement}
 						onKeyDown={(e) => {
 							if (isKeyExit(e, true)) {
@@ -83,14 +83,14 @@ export const TalentsItem = ({
 							}
 						}}
 						placeholder="Talent Details"
-						value={talentDisplay.value}
+						value={talentDisplay.description}
 					/>
 				</div>
 			) : (
-				!!talentDisplay.value && (
+				!!talentDisplay.description && (
 					<div className="p-2 pt-0">
 						<p className="rounded-md p-2 bg-(--color-primary-2) text-left whitespace-pre-wrap">
-							{talentDisplay.value}
+							{talentDisplay.description}
 						</p>
 					</div>
 				)

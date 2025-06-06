@@ -85,33 +85,35 @@ export const CRAWLER_SHEET__MOCK: CrawlerSheet = {
 	talents: {
 		data: [
 			{
-				label: 'Languages',
-				value: 'Common, Elvish, Dwarvish',
+				name: 'Languages',
+				description: 'Common, Elvish, Dwarvish',
 			},
 			{
-				label: 'Tracking',
-				value: 'Expert tracker in wilderness.',
+				name: 'Tracking',
+				description: 'Expert tracker in wilderness.',
 			},
 		],
 		notes: 'Talented in survival and diplomacy.',
 	},
 	gear: {
 		wealth: [
-			{ type: 'gold', amount: '50' },
-			{ type: 'silver', amount: '5' },
+			{ type: 'gold', quantity: '50' },
+			{ type: 'silver', quantity: '5' },
 		],
 		maxSlots: '15',
 		items: [
-			{ slot: '1', name: 'Healing Potion', count: '2', capacity: '10 HP' },
-			{ slot: '2', name: 'Rope', count: '1', capacity: '50 ft.' },
+			{ slot: '1', name: 'Healing Potion', quantity: '2 / 10' },
+			{ slot: '2', name: 'Rope', quantity: '22 / 50 ft.' },
 			{
 				slot: '3',
 				name: 'Map of Middle-earth',
-				count: '1',
-				capacity: 'Navigation',
+				quantity: '1',
 			},
 		],
-		freeCarry: 'Bedroll, Flint and Steel',
+		freeCarry: [
+			{ name: 'Bedroll', quantity: '1' },
+			{ name: 'Flint and Steel', quantity: '' },
+		],
 		notes: 'Prepared for long journeys.',
 	},
 } as const;
