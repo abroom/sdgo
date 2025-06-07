@@ -3,6 +3,8 @@ import { useCallback, useContext } from 'react';
 import { CrawlerSheetContext } from '@/contexts/CrawlerSheetContext/CrawlerSheetContext';
 import type { CrawlerSheet } from '@/types/CrawlerSheet';
 
+import { MenuButton } from '../MenuButton';
+
 export const LoadFile = () => {
 	const { updateCrawlerSheet } = useContext(CrawlerSheetContext);
 
@@ -32,9 +34,5 @@ export const LoadFile = () => {
 		document.body.removeChild(input);
 	}, [updateCrawlerSheet]);
 
-	return (
-		<button className="sm:w-50" onClick={handleLoad}>
-			<h3>Load .json</h3>
-		</button>
-	);
+	return <MenuButton onClick={handleLoad}>Load JSON</MenuButton>;
 };
