@@ -12,7 +12,8 @@ export const CRAWLER_SHEET__SHADOWDARK: CrawlerSheet = {
 		deity: '',
 		lvl: '1',
 		xp: { current: '0', required: '10' },
-		notes: '',
+		notes:
+			'This is the Shadowdark template. Standard stats. Level 1 character with 0 XP. Standard wealth types. Crawling kit.',
 	},
 	stats: {
 		data: [
