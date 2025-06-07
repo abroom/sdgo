@@ -88,7 +88,6 @@ export const CoreExperienceItem = ({
 				<div className="flex-grow border-x-0 border-t-0 max-w-[calc((100%-1.5rem)/2)]">
 					{editors.enabled.has('xp') ? (
 						<input
-							autoFocus
 							className="flex-grow px-2 h-8 text-left"
 							onChange={handleRequiredChange}
 							onKeyDown={(e) => {

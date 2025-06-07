@@ -57,7 +57,10 @@
 			not-disabled:focus-visible:outline-1 focus-visible:outline-(--color-secondary)
 			not-disabled:hover:shadow-(--highlight)
 			not-disabled:focus-visible:shadow-(--highlight)
-			not-disabled:cursor-pointer;
+			not-disabled:cursor-pointer
+			disabled:cursor-not-allowed
+			disabled:bg-(--color-primary-2)
+			disabled:text-(--color-primary-4);
 	}
 
 	input,

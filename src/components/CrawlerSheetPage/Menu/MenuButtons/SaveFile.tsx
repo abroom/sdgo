@@ -2,6 +2,8 @@ import { useCallback, useContext } from 'react';
 
 import { CrawlerSheetContext } from '@/contexts/CrawlerSheetContext/CrawlerSheetContext';
 
+import { MenuButton } from '../MenuButton';
+
 export const SaveFile = () => {
 	const { crawlerSheet } = useContext(CrawlerSheetContext);
 
@@ -23,9 +25,5 @@ export const SaveFile = () => {
 		URL.revokeObjectURL(url);
 	}, [crawlerSheet]);
 
-	return (
-		<button className="sm:w-50" onClick={handleSave}>
-			<h3>Save as .json</h3>
-		</button>
-	);
+	return <MenuButton onClick={handleSave}>Save JSON</MenuButton>;
 };

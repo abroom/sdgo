@@ -1,6 +1,6 @@
 import type { CrawlerSheet } from '../../types/CrawlerSheet';
 
-export const CRAWLER_SHEET__MOCK: CrawlerSheet = {
+export const CRAWLER_SHEET__EXAMPLE: CrawlerSheet = {
 	core: {
 		name: 'Aragorn',
 		player: 'John Doe',

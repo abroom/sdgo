@@ -58,7 +58,7 @@ export const DefensesHP = ({
 						<div className="flex-grow flex items-center h-full max-w-[calc((100%-1rem)/2)] p-2">
 							{editors.enabled.has('hp') ? (
 								<input
-									autoFocus
+									autoFocus={field === 'current'}
 									className="h-full flex-grow text-center text-xl"
 									onChange={buildChangeHandler(field)}
 									onKeyDown={(e) => {

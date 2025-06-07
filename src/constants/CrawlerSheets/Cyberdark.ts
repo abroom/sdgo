@@ -12,7 +12,8 @@ export const CRAWLER_SHEET__CYBERDARK: CrawlerSheet = {
 		deity: '',
 		lvl: '1',
 		xp: { current: '0', required: '10' },
-		notes: '',
+		notes:
+			'This is the Cyberdark template. Based on Modlist: RED, a cyberpunk mod of Shadowdark. Armor bulk. Themed wealth types and crawling kit.',
 	},
 	stats: {
 		data: [

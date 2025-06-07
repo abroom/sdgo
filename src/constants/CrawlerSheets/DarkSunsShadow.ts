@@ -12,7 +12,8 @@ export const CRAWLER_SHEET__DARK_SUNS_SHADOW: CrawlerSheet = {
 		deity: '',
 		lvl: '1',
 		xp: { current: '0', required: '10' },
-		notes: '',
+		notes:
+			"This is the Dark Sun's Shadow template. Based on Modlist: Orange, a Dark Sun inspired mod of Shadowdark. Psionics stat. Themed wealth types and crawling kit.",
 	},
 	stats: {
 		data: [
@@ -50,7 +51,7 @@ export const CRAWLER_SHEET__DARK_SUNS_SHADOW: CrawlerSheet = {
 	},
 	gear: {
 		wealth: [
-			{ type: 'Genuine Pelvics', quantity: '' },
+			{ type: 'Genuine Patellae', quantity: '' },
 			{ type: 'Stone Pounds', quantity: '' },
 			{ type: 'Clay Pennies', quantity: '' },
 		],
