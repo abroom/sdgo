@@ -11,7 +11,7 @@ import { CRAWLER_SHEET__DARK_SUNS_SHADOW } from '@/constants/CrawlerSheets/DarkS
 import { CrawlerSheetContext } from '@/contexts/CrawlerSheetContext/CrawlerSheetContext';
 
 const templates = {
-	'Shadow Dark': CRAWLER_SHEET__SHADOWDARK,
+	Shadowdark: CRAWLER_SHEET__SHADOWDARK,
 	Cyberdark: CRAWLER_SHEET__CYBERDARK,
 	"Dark Sun's Shadow": CRAWLER_SHEET__DARK_SUNS_SHADOW,
 	Blank: CRAWLER_SHEET__BLANK,
