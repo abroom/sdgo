@@ -88,7 +88,7 @@ export const DiceRoller = ({
 					</div>
 					<div ref={scrollToRef} />
 				</div>
-				<div className="border border-(--color-primary-3) rounded-lg flex-grow max-h-50% p-2 grid grid-cols-2 sm:gris-cols-1 gap-2 overflow-auto overscroll-contain">
+				<div className="border border-(--color-primary-3) rounded-lg flex-grow max-h-50% p-2 grid grid-cols-2 gap-2 overflow-auto overscroll-contain">
 					{[20, 2, 3, 4, 6, 8, 10, 12, 100].map((sides) => (
 						<button
 							key={sides}
