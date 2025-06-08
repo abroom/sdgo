@@ -5,7 +5,7 @@ import type { CrawlerSheet } from '@/types/CrawlerSheet';
 
 import { MenuButton } from '../MenuButton';
 
-export const LoadFile = () => {
+export const LoadFile = ({ closeMenu }: { readonly closeMenu: () => void }) => {
 	const { updateCrawlerSheet } = useContext(CrawlerSheetContext);
 
 	const handleLoad = useCallback(() => {
@@ -22,6 +22,7 @@ export const LoadFile = () => {
 						const result = e.target?.result as string;
 						const loadedData = JSON.parse(result) as CrawlerSheet;
 						updateCrawlerSheet(loadedData);
+						closeMenu();
 					} catch (error) {
 						console.error('Error loading JSON file:', error);
 					}
@@ -32,7 +33,7 @@ export const LoadFile = () => {
 		document.body.appendChild(input);
 		input.click();
 		document.body.removeChild(input);
-	}, [updateCrawlerSheet]);
+	}, [closeMenu, updateCrawlerSheet]);
 
 	return <MenuButton onClick={handleLoad}>Load JSON</MenuButton>;
 };

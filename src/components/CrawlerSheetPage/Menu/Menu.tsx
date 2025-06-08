@@ -1,20 +1,16 @@
 import { useState } from 'react';
 
-import { LoadFile } from './MenuButtons/LoadFile';
-import { SaveFile } from './MenuButtons/SaveFile';
-import { LoadTemplate } from './MenuButtons/LoadTemplate';
 import { Bars3Icon } from '@heroicons/react/24/solid';
 import { Dialog } from '@/components/Dialog/Dialog';
+import { MenuContent } from './MenuContent';
 
 export const Menu = () => {
 	const [isExpanded, setIsExpanded] = useState(false);
 
 	return (
 		<>
-			<div className="fixed hidden sm:flex items-center justify-center gap-2 border-t border-(--color-primary) h-10 w-full bg-(--color-primary) shadow-md shadow-(color:--color-primary-4)">
-				<SaveFile />
-				<LoadFile />
-				<LoadTemplate />
+			<div className="fixed inset-0 hidden sm:flex items-center justify-center gap-2 border-t border-(--color-primary) h-10 w-full bg-(--color-primary) shadow-md shadow-(color:--color-primary-4)">
+				<MenuContent closeMenu={() => setIsExpanded(false)} />
 			</div>
 			<div className="hidden sm:block h-10" />
 			<div className="sm:hidden">
@@ -27,9 +23,7 @@ export const Menu = () => {
 				{isExpanded && (
 					<Dialog>
 						<div className="flex-grow flex flex-col gap-2">
-							<SaveFile />
-							<LoadFile />
-							<LoadTemplate />
+							<MenuContent closeMenu={() => setIsExpanded(false)} />
 						</div>
 						<button onClick={() => setIsExpanded(false)}>
 							<h3>Close</h3>

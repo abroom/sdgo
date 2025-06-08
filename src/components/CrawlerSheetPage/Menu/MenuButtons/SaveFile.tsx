@@ -4,7 +4,7 @@ import { CrawlerSheetContext } from '@/contexts/CrawlerSheetContext/CrawlerSheet
 
 import { MenuButton } from '../MenuButton';
 
-export const SaveFile = () => {
+export const SaveFile = ({ closeMenu }: { readonly closeMenu: () => void }) => {
 	const { crawlerSheet } = useContext(CrawlerSheetContext);
 
 	const handleSave = useCallback(() => {
@@ -23,7 +23,8 @@ export const SaveFile = () => {
 
 		document.body.removeChild(a);
 		URL.revokeObjectURL(url);
-	}, [crawlerSheet]);
+		closeMenu();
+	}, [closeMenu, crawlerSheet]);
 
 	return <MenuButton onClick={handleSave}>Save JSON</MenuButton>;
 };

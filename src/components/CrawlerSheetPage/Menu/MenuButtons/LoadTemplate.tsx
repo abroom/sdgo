@@ -20,7 +20,11 @@ const templates = {
 	Example: CRAWLER_SHEET__EXAMPLE,
 } as const;
 
-export const LoadTemplate = () => {
+export const LoadTemplate = ({
+	closeMenu,
+}: {
+	readonly closeMenu: () => void;
+}) => {
 	const { updateCrawlerSheet } = useContext(CrawlerSheetContext);
 
 	const [showTemplate, setShowTemplate] = useState(false);
@@ -72,6 +76,7 @@ export const LoadTemplate = () => {
 									if (!template) return;
 									updateCrawlerSheet(templates[template]);
 									setShowTemplate(false);
+									closeMenu();
 								}}
 							>
 								Load
