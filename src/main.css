@@ -51,12 +51,14 @@
 	input,
 	select,
 	textarea {
-		@apply border border-(--color-primary-3) rounded-md
-			p-2
-			not-disabled:hover:outline-1 hover:outline-(--color-secondary)
-			not-disabled:focus-visible:outline-1 focus-visible:outline-(--color-secondary)
+		@apply border border-(--color-primary-3) rounded-md p-2
+			outline-(--color-secondary)
+			not-disabled:hover:outline-1
+			not-disabled:focus-visible:outline-1
+			not-disabled:active:outline-1
 			not-disabled:hover:shadow-(--highlight)
 			not-disabled:focus-visible:shadow-(--highlight)
+			not-disabled:active:shadow-(--highlight)
 			not-disabled:cursor-pointer
 			disabled:cursor-not-allowed
 			disabled:bg-(--color-primary-2)
