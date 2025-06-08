@@ -4,7 +4,13 @@ import clsx from 'clsx/lite';
 
 import { shuffleArray } from '@/utils/ShuffleArray';
 
-export const DiceRoller = ({ close }: { readonly close: () => void }) => {
+export const DiceRoller = ({
+	visible,
+	close,
+}: {
+	readonly visible: boolean;
+	readonly close: () => void;
+}) => {
 	const [customDice, setCustomDice] = useState<number>(7);
 	const [diceRolls, setDiceRolls] = useState<
 		({
@@ -41,7 +47,12 @@ export const DiceRoller = ({ close }: { readonly close: () => void }) => {
 	});
 
 	return (
-		<div className="fixed inset-0 flex flex-col gap-4 sm:gap-8 p-4 sm:p-8 bg-(--color-primary)">
+		<div
+			className={clsx(
+				visible ? 'fixed' : 'hidden',
+				'inset-0 flex flex-col gap-4 sm:gap-8 p-4 sm:p-8 bg-(--color-primary)',
+			)}
+		>
 			<div className="flex-grow grid grid-cols-1 sm:grid-cols-2 gap-2 overflow-hidden">
 				<div className="border border-(--color-primary-2) rounded-lg flex-grow max-h-50% p-4 bg-(--color-primary-2) overflow-auto overscroll-contain">
 					<label>Dice Results</label>
