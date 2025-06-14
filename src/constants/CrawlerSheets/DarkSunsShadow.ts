@@ -37,7 +37,14 @@ export const CRAWLER_SHEET__DARK_SUNS_SHADOW: CrawlerSheet = {
 		notes: '',
 	},
 	spells: {
-		tiers: [],
+		tiers: [
+			{
+				name: 'Psionics',
+				data: [],
+				notes:
+					'PSI Points: TBD\nPSI Points Limit: TBD\n\nPSI Types Known:\n- TBD',
+			},
+		],
 		notes: '',
 	},
 	talents: {
